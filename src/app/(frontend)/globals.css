@@ -1,0 +1,186 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated to official Visit Angola brand colors from guidelines */
+  /* Official Visit Angola Brand Colors:
+     Orange: #D74B29 (RGB: 215, 75, 41)
+     Green: #446D55 (RGB: 68, 109, 85)  
+     Yellow: #E49E2F (RGB: 228, 158, 47)
+     Black: #000000 */
+  --background: #ffffff; /* Clean white background */
+  --foreground: #000000; /* Official black */
+  --card: #fefefe; /* Slightly off-white for cards */
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --primary: #d74b29; /* Official orange */
+  --primary-foreground: #ffffff;
+  --secondary: #446d55; /* Official green */
+  --secondary-foreground: #ffffff;
+  --muted: #f5f5f5;
+  --muted-foreground: #666666;
+  --accent: #e49e2f; /* Official yellow */
+  --accent-foreground: #000000;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e5e5e5;
+  --input: #f9f9f9;
+  --ring: #d74b29; /* Orange ring */
+  --chart-1: #d74b29; /* Orange */
+  --chart-2: #e49e2f; /* Yellow */
+  --chart-3: #446d55; /* Green */
+  --chart-4: #000000; /* Black */
+  --chart-5: #999999; /* Gray */
+  --radius: 0.5rem;
+  --sidebar: #fafafa;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #d74b29;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5f5f5;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #d74b29;
+}
+
+.dark {
+  --background: #1a1a1a;
+  --foreground: #ffffff;
+  --card: #2a2a2a;
+  --card-foreground: #ffffff;
+  --popover: #2a2a2a;
+  --popover-foreground: #ffffff;
+  --primary: #d74b29;
+  --primary-foreground: #ffffff;
+  --secondary: #446d55;
+  --secondary-foreground: #ffffff;
+  --muted: #3a3a3a;
+  --muted-foreground: #a0a0a0;
+  --accent: #e49e2f;
+  --accent-foreground: #000000;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #3a3a3a;
+  --input: #2a2a2a;
+  --ring: #d74b29;
+  --chart-1: #d74b29;
+  --chart-2: #e49e2f;
+  --chart-3: #446d55;
+  --chart-4: #ffffff;
+  --chart-5: #999999;
+  --sidebar: #2a2a2a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #d74b29;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #3a3a3a;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #3a3a3a;
+  --sidebar-ring: #d74b29;
+}
+
+/* Added official Visit Angola brand fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+@theme inline {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "Inter", monospace;
+  --font-heading: "Inter", system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+}
+
+/* Added brand-specific utility classes */
+.text-brand-orange {
+  color: #d74b29;
+}
+
+.text-brand-green {
+  color: #446d55;
+}
+
+.text-brand-yellow {
+  color: #e49e2f;
+}
+.bg-brand-color-blue{
+  background-color: #2356a3;
+}
+.bg-brand-color-ash{
+  background-color: #bac4d8;
+}
+
+.bg-brand-orange {
+  background-color: #d74b29;
+}
+
+.bg-brand-green {
+  background-color: #446d55;
+}
+
+.bg-brand-yellow {
+  background-color: #e49e2f;
+}
+
+.border-brand-orange {
+  border-color: #d74b29;
+}
+
+.border-brand-green {
+  border-color: #446d55;
+}
+
+.border-brand-yellow {
+  border-color: #e49e2f;
+}
