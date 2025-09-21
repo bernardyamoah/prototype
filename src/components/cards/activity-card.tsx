@@ -2,7 +2,7 @@ import { motion } from 'motion/react'
 const ActivityCard = ({ item, isActive }: { item: any; isActive: boolean }) => {
   return (
     <motion.div
-      className="relative rounded-3xl overflow-hidden h-72 shadow-lg"
+      className="relative w-full rounded-3xl overflow-hidden h-72 shadow-lg"
       animate={{
         scale: isActive ? 1.02 : 0.98,
         y: isActive ? -8 : 0,

@@ -34,6 +34,35 @@ To do so, follow these steps:
 - Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
 - Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
 
+## Editable Hero Section
+
+This project includes a fully editable hero section that can be managed through the Payload CMS admin panel.
+
+### Features
+
+- Dynamic hero section with background image
+- Customizable heading and subheading
+- Optional call-to-action button
+- Responsive design that works on all devices
+
+### How to Edit
+
+1. Log in to the Payload admin panel at `http://localhost:3000/admin`
+2. Navigate to "Pages" in the sidebar
+3. Edit the "Home" page (or create a new page)
+4. In the layout section, add a new block and select "Hero"
+5. Configure the hero section with your content:
+   - Add a compelling heading
+   - Include a descriptive subheading (optional)
+   - Upload a background image
+   - Add a call-to-action button (optional)
+
+### Technical Details
+
+- The hero component is located at `src/components/cards/Hero.tsx`
+- Page templates are in `src/app/(frontend)/[slug]/page.tsx`
+- TypeScript types are defined in `src/types/payload-types.ts`
+
 ## How it works
 
 The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:

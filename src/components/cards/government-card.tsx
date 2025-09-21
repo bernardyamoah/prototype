@@ -1,0 +1,40 @@
+'use client'
+import { motion } from 'motion/react'
+import Image from 'next/image'
+
+interface GovernmentStructureItem {
+  title: string
+  description: string
+  icon: React.ComponentType<{ className?: string }>
+  image: string
+}
+
+const GovernmentCard = ({ item, index }: { item: GovernmentStructureItem; index: number }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow group h-full"
+    >
+      <div className="relative h-48 overflow-hidden">
+        <Image
+          src={item.image}
+          alt={item.title}
+          width={400}
+          height={300}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        <item.icon className="absolute bottom-4 left-4 w-8 h-8 text-white" />
+      </div>
+      <div className="p-6">
+        <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
+        <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+      </div>
+    </motion.div>
+  )
+}
+
+export default GovernmentCard

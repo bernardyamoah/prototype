@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { LanguageSwitcher } from '@/components/language-switcher'
 import { Menu, User, X } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -64,14 +65,17 @@ export function Navigation() {
                 </Link>
               ))}
             </div>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-white hover:text-brand-yellow hover:bg-white/10"
-            >
-              <User className="w-4 h-4 mr-2" />
-              LOGIN SESSÃO
-            </Button>
+            <div className="flex items-center space-x-4">
+              <LanguageSwitcher />
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-white hover:text-brand-yellow hover:bg-white/10"
+              >
+                <User className="w-4 h-4 mr-2" />
+                LOGIN SESSÃO
+              </Button>
+            </div>
           </div>
         </div>
 

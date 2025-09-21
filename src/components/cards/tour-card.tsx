@@ -1,5 +1,5 @@
 'use client'
-import { Calendar, MapPin, Star, Users } from 'lucide-react'
+import { Calendar, MapPin, Users } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 const TouristSiteCard = ({ site, isActive }: { site: any; isActive: boolean }) => {
@@ -35,17 +35,6 @@ const TouristSiteCard = ({ site, isActive }: { site: any; isActive: boolean }) =
       />
 
       {/* Rating Badge */}
-      {site.rating && (
-        <motion.div
-          className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm px-2 py-1 rounded-full flex items-center gap-1 text-white text-sm"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-          <span className="font-medium">{site.rating}</span>
-        </motion.div>
-      )}
 
       <motion.div
         className="absolute inset-0 bg-gradient-to-t"

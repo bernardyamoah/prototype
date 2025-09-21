@@ -1,9 +1,12 @@
 import { Navigation } from '@/components/navigation'
+import { LocaleProvider } from '@/components/locale-provider'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import type React from 'react'
 import { Suspense } from 'react'
 import './globals.css'
+import { Loader2 } from 'lucide-react'
+import { Footer } from '@/components/footer'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -28,11 +31,19 @@ export default function RootLayout({
   return (
     <html lang="pt">
       <body className={`font-sans relative ${inter.variable}`}>
-        <Suspense fallback={<div>Loading...</div>}>
-          {' '}
-          <Navigation />
-          {children}
-        </Suspense>
+        <LocaleProvider defaultLocale="pt">
+          <Suspense
+            fallback={
+              <div className="flex h-screen items-center justify-center flex-col gap-2">
+                <Loader2 className="animate-spin" /> Loading...
+              </div>
+            }
+          >
+            <Navigation />
+            {children}
+          </Suspense>
+          <Footer />
+        </LocaleProvider>
       </body>
     </html>
   )
