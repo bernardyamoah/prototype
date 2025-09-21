@@ -12,11 +12,9 @@ export default async function HomePage() {
       />
 
       {/* Featured Tours Section */}
-      <div className="bg-[#f7f0df]">
+      <div className="bg-[#f7f0df] px-4">
         <ExploreCarousel />
       </div>
-
-  
     </div>
   )
 }
