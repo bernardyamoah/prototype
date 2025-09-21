@@ -19,11 +19,23 @@ export function HeroSection({
   textColor = '',
 }: HeroSectionProps) {
   const [isLoaded, setIsLoaded] = useState(false)
+  const [particlePositions, setParticlePositions] = useState<Array<{ x: number; y: number }>>([])
 
   // Trigger animations after component mounts
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 100)
     return () => clearTimeout(timer)
+  }, [])
+
+  // Calculate particle positions on the client side
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const positions = Array.from({ length: 20 }).map(() => ({
+        x: Math.random() * window.innerWidth,
+        y: window.innerHeight + 100,
+      }))
+      setParticlePositions(positions)
+    }
   }, [])
 
   // Animation variants for different elements
@@ -33,7 +45,6 @@ export function HeroSection({
       opacity: 1,
       transition: {
         duration: 0.6,
-
         staggerChildren: 0.3,
       },
     },
@@ -100,7 +111,7 @@ export function HeroSection({
 
       {/* Content Container */}
       <motion.div
-        className="mt-20 relative z-10 text-white max-w-(--breakpoint-xl) mx-auto  px-4"
+        className="mt-20 relative z-10 text-white max-w-(--breakpoint-xl) mx-auto px-4"
         variants={containerVariants}
       >
         {/* Animated Subtitle */}
@@ -112,7 +123,7 @@ export function HeroSection({
         </motion.p>
 
         {/* Animated Title with Staggered Words */}
-        <div className="text-6xl md:text-[171px] md:mt-3 font-bold mb-8 text-balance ">
+        <div className="text-6xl md:text-[171px] md:mt-3 font-bold mb-8 text-balance">
           {titleWords.map((word, index) => (
             <motion.span
               key={index}
@@ -177,19 +188,19 @@ export function HeroSection({
         </motion.div>
       </motion.div>
 
-      {/* Floating Particles Animation (Optional Enhancement) */}
+      {/* Floating Particles Animation */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {Array.from({ length: 20 }).map((_, i) => (
+        {particlePositions.map((pos, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-white/30 rounded-full"
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: window.innerHeight + 100,
+              x: pos.x,
+              y: pos.y,
             }}
             animate={{
               y: -100,
-              x: Math.random() * window.innerWidth,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
             }}
             transition={{
               duration: Math.random() * 10 + 10,
