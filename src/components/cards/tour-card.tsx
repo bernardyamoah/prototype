@@ -130,8 +130,10 @@ const TouristSiteCard = ({ site, isActive }: { site: any; isActive: boolean }) =
                 </motion.div>
               )}
 
-              <motion.button
-                className="bg-white text-black px-6 py-2 rounded-lg text-sm font-semibold hover:bg-white/90 transition-colors w-full"
+              <motion.a
+                href="https://okuya.ao/"
+                target="_blank"
+                className="bg-white text-black px-6 py-2 rounded-lg text-sm font-semibold hover:bg-white/90 transition-colors flex-1"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.3 }}
@@ -139,7 +141,7 @@ const TouristSiteCard = ({ site, isActive }: { site: any; isActive: boolean }) =
                 whileTap={{ scale: 0.98 }}
               >
                 Reservar Agora
-              </motion.button>
+              </motion.a>
             </motion.div>
           )}
         </AnimatePresence>
