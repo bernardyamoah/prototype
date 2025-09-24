@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 const mainNavItems = [
   { name: 'INSTITUCIONAL', link: '/institucional' },
   { name: 'INVESTE EM ANGOLA', link: '/investe' },
-  { name: 'EXPLORE ANGOLA', link: '/explore' },
+  { name: 'EXPLORE ANGOLA', link: '/' },
   { name: 'FACILIDADES', link: '/facilidades' },
   { name: 'RECURSOS', link: '/recursos' },
 ]
