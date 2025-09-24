@@ -42,6 +42,25 @@ export const Events: CollectionConfig = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'status',
+      type: 'select',
+      options: [
+        {
+          label: 'Draft',
+          value: 'draft',
+        },
+        {
+          label: 'Published',
+          value: 'published',
+        },
+      ],
+      defaultValue: 'draft', // Default to draft for new events
+      required: true,
+      admin: {
+        position: 'sidebar', // Place status in the admin sidebar for easy access
+      },
+    },
   ],
   timestamps: true,
 }

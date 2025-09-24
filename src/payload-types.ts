@@ -197,6 +197,7 @@ export interface Event {
   location: string;
   link: string;
   image: string | Media;
+  status: 'draft' | 'published';
   updatedAt: string;
   createdAt: string;
 }
@@ -347,6 +348,7 @@ export interface EventsSelect<T extends boolean = true> {
   location?: T;
   link?: T;
   image?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }

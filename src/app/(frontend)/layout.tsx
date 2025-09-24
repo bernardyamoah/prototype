@@ -1,7 +1,11 @@
+import { Footer } from '@/components/footer'
+import { LocaleProvider } from '@/components/locale-provider'
 import { Navigation } from '@/components/navigation'
+import { Loader2 } from 'lucide-react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import type React from 'react'
+import { Suspense } from 'react'
 import './globals.css'
 
 const inter = Inter({
@@ -25,9 +29,22 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div>
-      <Navigation />
-      {children}
-    </div>
+    <html lang="pt">
+      <body className={`font-sans relative ${inter.variable}`}>
+        <LocaleProvider defaultLocale="pt">
+          <Suspense
+            fallback={
+              <div className="flex h-screen items-center justify-center flex-col gap-2">
+                <Loader2 className="animate-spin" /> Loading...
+              </div>
+            }
+          >
+            <Navigation />
+            {children}
+          </Suspense>
+          <Footer />
+        </LocaleProvider>
+      </body>
+    </html>
   )
 }
