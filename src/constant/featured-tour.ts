@@ -6,11 +6,7 @@ export const angolanTours = [
     description:
       'Mergulhe no principal santuário de vida selvagem de Angola, onde savanas, florestas e rios abundam com elefantes, antílopes e aves exóticas. Reconstruído após anos de recuperação, é ideal para safaris guiados, observação de aves e eco-tours.',
     image: 'tour-4.JPG',
-
-    rating: '4.8',
-    duration: '3 dias',
-    groupSize: '6-12 pessoas',
-    highlights: ['Safari guiado', 'Observação de vida selvagem', 'Eco-turismo', 'Fotografia'],
+    
   },
   {
     id: 2,
@@ -20,10 +16,7 @@ export const angolanTours = [
       'Testemunhe uma das cachoeiras mais espetaculares de África, rivalizando com as Cataratas Vitória em grandeza, rodeada por florestas tropicais exuberantes e desfiladeiros dramáticos.',
     image: 'tour-4.JPG',
 
-    rating: '4.9',
-    duration: '2 dias',
-    groupSize: '4-10 pessoas',
-    highlights: ['Cachoeira espetacular', 'Trilhas na floresta', 'Fotografia', 'Piqueniques'],
+  
   },
   {
     id: 3,
@@ -33,10 +26,7 @@ export const angolanTours = [
       'Explore o maior parque nacional de Angola, combinando dunas de deserto dramáticas, costas acidentadas e formações rochosas únicas com vida selvagem diversa como zebras e flamingos.',
     image: 'tour-1.JPG',
 
-    rating: '4.7',
-    duration: '4 dias',
-    groupSize: '6-8 pessoas',
-    highlights: ['Dunas do deserto', 'Costa selvagem', 'Off-road', 'Vida selvagem única'],
+    
   },
   {
     id: 4,
@@ -46,10 +36,7 @@ export const angolanTours = [
       'Viaje no tempo nesta fortaleza histórica do século XVI, oferecendo vistas deslumbrantes da baía de Luanda e uma rica história colonial portuguesa com museus fascinantes.',
     image: 'tour-3.JPG',
 
-    rating: '4.6',
-    duration: 'Meio dia',
-    groupSize: '10-20 pessoas',
-    highlights: ['História colonial', 'Arquitetura antiga', 'Vistas da baía', 'Museu'],
+  
   },
   {
     id: 5,
@@ -59,10 +46,7 @@ export const angolanTours = [
       'Ilha tropical próxima a Luanda, perfeita para relaxamento com praias de areia branca, águas cristalinas e experiências de resort de luxo com desportos aquáticos.',
     image: 'tour-4.JPG',
 
-    rating: '4.8',
-    duration: '1 dia',
-    groupSize: '2-15 pessoas',
-    highlights: ['Praias pristinas', 'Desportos aquáticos', 'Resort de luxo', 'Relaxamento'],
+  
   },
   // {
   //   id: 6,
@@ -105,14 +89,6 @@ export const angolanTours = [
       'Navegue pelo maior rio de Angola, descobrindo comunidades ribeirinhas tradicionais, vida selvagem aquática e paisagens diversas desde as terras altas até ao oceano.',
     image: 'tour-6.JPG',
 
-    rating: '4.5',
-    duration: '2-3 dias',
-    groupSize: '8-16 pessoas',
-    highlights: [
-      'Cruzeiro fluvial',
-      'Comunidades tradicionais',
-      'Vida aquática',
-      'Paisagens diversas',
-    ],
+  
   },
 ]

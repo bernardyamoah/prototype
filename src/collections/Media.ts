@@ -1,11 +1,6 @@
 import type { CollectionConfig } from 'payload';
 
 
-interface MediaData {
-  alt?: string;
-  filename?: string;
-  [key: string]: unknown;
-}
 
 export const Media: CollectionConfig = {
   slug: 'media',

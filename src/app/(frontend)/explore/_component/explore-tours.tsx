@@ -2,12 +2,12 @@
 import TouristSiteCard from '@/components/cards/tour-card'
 import AnimatedDividerBar from '@/components/divide-bar'
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel'
-import { angolanTours } from '@/constant/featured-tour'
+import { Event } from '@/payload-types'
 import Autoplay from 'embla-carousel-autoplay'
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 
-const ExploreCarousel = () => {
+const ExploreCarousel = ({ events }: { events: Event[] }) => {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   const [_, setCount] = useState(0)
@@ -79,10 +79,10 @@ const ExploreCarousel = () => {
           }}
         >
           <CarouselContent className="-ml-6">
-            {angolanTours.map((site, index) => (
+            {events.map((site, index) => (
               <CarouselItem key={site.id} className="pl-6 md:basis-1/2 lg:basis-1/3">
                 <div className="h-full">
-                  <TouristSiteCard site={site} isActive={Math.abs(index - (current - 1)) <= 1} />
+                  <TouristSiteCard event={site} isActive={Math.abs(index - (current - 1)) <= 1} />
                 </div>
               </CarouselItem>
             ))}
@@ -98,7 +98,7 @@ const ExploreCarousel = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          {angolanTours.map((_, index) => (
+          {events.map((_, index) => (
             <motion.button
               key={index}
               onClick={() => goToSlide(index)}
