@@ -41,4 +41,8 @@ export default buildConfig({
     supportedLanguages: { pt, en },
     fallbackLanguage: 'pt',
   },
+  localization: {
+    locales: ['pt', 'en'],
+    defaultLocale: 'pt',
+  },
 })

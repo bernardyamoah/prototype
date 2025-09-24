@@ -15,7 +15,13 @@ const availableLocales = {
   en: 'English',
 }
 
-export function LocaleProvider({ children, defaultLocale = 'pt' }: { children: React.ReactNode; defaultLocale?: string }) {
+export function LocaleProvider({
+  children,
+  defaultLocale = 'pt',
+}: {
+  children: React.ReactNode
+  defaultLocale?: string
+}) {
   const [locale, setLocale] = useState(defaultLocale)
 
   useEffect(() => {
@@ -29,6 +35,11 @@ export function LocaleProvider({ children, defaultLocale = 'pt' }: { children: R
   const handleSetLocale = (newLocale: string) => {
     setLocale(newLocale)
     localStorage.setItem('locale', newLocale)
+
+    // Update the URL with the new locale as a query parameter
+    const url = new URL(window.location.href)
+    url.searchParams.set('locale', newLocale)
+    window.history.pushState({}, '', url)
   }
 
   return (

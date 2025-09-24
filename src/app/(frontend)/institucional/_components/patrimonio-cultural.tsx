@@ -12,8 +12,7 @@ const culturalHighlights = [
     title: 'Diversidade Étnica',
     description:
       'Angola é lar de diversos grupos étnicos, incluindo Ovimbundu, Kimbundu, Bakongo e muitos outros.',
-    image:
-      'https://unsplash.com/photos/two-women-in-colorful-dresses-walking-down-a-street-zloPCBwUyN8',
+    image: 'https://i.pinimg.com/736x/7c/e3/35/7ce335d63349b362f296d2baf349b0a8.jpg',
   },
   {
     title: 'Música e Dança',

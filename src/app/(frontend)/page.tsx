@@ -3,7 +3,7 @@ import { getEvents } from '@/lib/payload-utils'
 import ExploreCarousel from './explore/_component/explore-tours'
 
 export default async function HomePage() {
-  // const page = await getPageData('explore')
+
   const events = await getEvents()
   console.log(events)
   return (
