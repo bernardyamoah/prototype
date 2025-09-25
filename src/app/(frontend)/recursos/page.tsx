@@ -2,9 +2,29 @@ import { HeroSection } from '@/components/hero-section'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Calendar, DollarSign, Download, ExternalLink, FileText, Globe, Handshake, Phone, Users } from 'lucide-react'
+import { getCallToAction } from '@/lib/get-call-to-action'
+import { getHeroSection } from '@/lib/get-header-section'
+import {
+  Calendar,
+  DollarSign,
+  Download,
+  ExternalLink,
+  FileText,
+  Globe,
+  Handshake,
+  Phone,
+  Users,
+} from 'lucide-react'
+import CTA from './_compoents/cta'
 
-export default function RecursosPage() {
+type Params = Promise<{ slug: string }>
+type SearchParams = Promise<{ [key: string]: 'pt' | 'en' | undefined }>
+
+export default async function RecursosPage(props: { params: Params; searchParams: SearchParams }) {
+  const searchParams = await props.searchParams
+  const locale = (await searchParams).locale || 'pt'
+  const heroSection = await getHeroSection({ locale, page: 'recursos' })
+  const cta = await getCallToAction({ locale: 'pt', page: 'recursos' })
   const campaigns = [
     {
       title: 'Descubra Angola 2024',
@@ -169,12 +189,19 @@ export default function RecursosPage() {
   return (
     <div className="min-h-screen mx-auto">
       <HeroSection
-        title="Recursos"
-        subtitle="Informações, campanhas e ferramentas para o desenvolvimento do turismo em Angola"
-        backgroundImage="/placeholder.svg?height=600&width=1200&text=Resources+Angola"
+        title={heroSection?.title || 'Recursos'}
+        subtitle={
+          heroSection?.subtitle ||
+          'Informações, campanhas e ferramentas para o desenvolvimento do turismo em Angola'
+        }
+        backgroundImage={
+          (typeof heroSection?.backgroundImage !== 'string' && heroSection?.backgroundImage?.url) ||
+          '/placeholder.svg?height=600&width=1200&text=Angola+Airport'
+        }
       />
-            {/* Campanhas do Turismo */}
-            <section className="py-16">
+
+      {/* Campanhas do Turismo */}
+      <section className="hidden py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -226,7 +253,7 @@ export default function RecursosPage() {
 
       {/* Agenda de Turismo */}
       <section className="py-16 bg-secondary/30">
-        <div className="container mx-auto px-4">
+        <div className="max-w-(--breakpoint-xl)   mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Agenda de Turismo
@@ -269,7 +296,7 @@ export default function RecursosPage() {
 
       {/* Parceiros no Estrangeiro */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="max-w-(--breakpoint-xl)  mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Parceiros no Estrangeiro
@@ -383,7 +410,7 @@ export default function RecursosPage() {
 
       {/* Downloads e Recursos */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="max-w-(--breakpoint-xl)  mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Downloads e Recursos
@@ -429,7 +456,7 @@ export default function RecursosPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-primary text-primary-foreground">
+      {/* <section className="py-16 bg-primary text-primary-foreground hidden ">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Precisa de Mais Informações?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
@@ -450,9 +477,8 @@ export default function RecursosPage() {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
+      <CTA cta={cta} />
     </div>
-  
-
   )
 }

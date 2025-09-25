@@ -28,7 +28,7 @@ export const PageSections: CollectionConfig = {
         { label: 'Image Gallery', value: 'gallery' },
         { label: 'Feature List', value: 'features' },
         { label: 'Statistics', value: 'stats' },
-
+        { label: 'Testimonials', value: 'testimonials' },
         { label: 'FAQ', value: 'faq' },
         { label: 'Government Cards', value: 'government-cards' },
         { label: 'Investment Cards', value: 'investment-cards' },

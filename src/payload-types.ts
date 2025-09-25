@@ -74,6 +74,7 @@ export interface Config {
     'page-sections': PageSection;
     'tourist-packages': TouristPackage;
     vision: Vision;
+    'call-to-actions': CallToAction;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -87,6 +88,7 @@ export interface Config {
     'page-sections': PageSectionsSelect<false> | PageSectionsSelect<true>;
     'tourist-packages': TouristPackagesSelect<false> | TouristPackagesSelect<true>;
     vision: VisionSelect<false> | VisionSelect<true>;
+    'call-to-actions': CallToActionsSelect<false> | CallToActionsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -246,6 +248,7 @@ export interface PageSection {
     | 'gallery'
     | 'features'
     | 'stats'
+    | 'testimonials'
     | 'faq'
     | 'government-cards'
     | 'investment-cards'
@@ -402,6 +405,30 @@ export interface Vision {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "call-to-actions".
+ */
+export interface CallToAction {
+  id: string;
+  title: string;
+  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'recursos';
+  heading?: string | null;
+  subheading?: string | null;
+  buttons?:
+    | {
+        label: string;
+        icon?: string | null;
+        variant?: ('default' | 'secondary' | 'outline') | null;
+        url?: string | null;
+        target?: ('_self' | '_blank') | null;
+        id?: string | null;
+      }[]
+    | null;
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -434,6 +461,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'vision';
         value: string | Vision;
+      } | null)
+    | ({
+        relationTo: 'call-to-actions';
+        value: string | CallToAction;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -698,6 +729,29 @@ export interface VisionSelect<T extends boolean = true> {
         id?: T;
       };
   status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "call-to-actions_select".
+ */
+export interface CallToActionsSelect<T extends boolean = true> {
+  title?: T;
+  page?: T;
+  heading?: T;
+  subheading?: T;
+  buttons?:
+    | T
+    | {
+        label?: T;
+        icon?: T;
+        variant?: T;
+        url?: T;
+        target?: T;
+        id?: T;
+      };
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }
