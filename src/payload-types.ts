@@ -158,6 +158,7 @@ export interface Media {
   alt: string;
   caption?: string | null;
   type?: ('image' | 'document' | 'video' | 'audio') | null;
+  _key?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -171,6 +172,7 @@ export interface Media {
   focalY?: number | null;
   sizes?: {
     thumbnail?: {
+      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -179,6 +181,7 @@ export interface Media {
       filename?: string | null;
     };
     card?: {
+      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -187,6 +190,7 @@ export interface Media {
       filename?: string | null;
     };
     desktop?: {
+      _key?: string | null;
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -538,6 +542,7 @@ export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   caption?: T;
   type?: T;
+  _key?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -555,6 +560,7 @@ export interface MediaSelect<T extends boolean = true> {
         thumbnail?:
           | T
           | {
+              _key?: T;
               url?: T;
               width?: T;
               height?: T;
@@ -565,6 +571,7 @@ export interface MediaSelect<T extends boolean = true> {
         card?:
           | T
           | {
+              _key?: T;
               url?: T;
               width?: T;
               height?: T;
@@ -575,6 +582,7 @@ export interface MediaSelect<T extends boolean = true> {
         desktop?:
           | T
           | {
+              _key?: T;
               url?: T;
               width?: T;
               height?: T;

@@ -1,9 +1,7 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { en } from '@payloadcms/translations/languages/en'
-import { pt } from '@payloadcms/translations/languages/pt'
+import { uploadthingStorage } from '@payloadcms/storage-uploadthing'
 import path from 'path'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
@@ -43,16 +41,29 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
+  upload: {
+    limits: {
+      fileSize: 5000000,
+    },
+  },
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
   sharp,
   plugins: [
-    payloadCloudPlugin(),
+    // payloadCloudPlugin(),
     // storage-adapter-placeholder
+    uploadthingStorage({
+      collections: {
+        media: true,
+      },
+      options: {
+        token: process.env.UPLOADTHING_TOKEN || '',
+      },
+    }),
   ],
   i18n: {
-    supportedLanguages: { pt, en },
+    // supportedLanguages: ['pt', 'en'],
     fallbackLanguage: 'pt',
   },
   localization: {
