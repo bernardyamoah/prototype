@@ -31,13 +31,13 @@ const governmentStructure = [
     title: 'Tribunal Supremo',
     description: 'Órgão superior da hierarquia dos tribunais judiciais.',
     icon: Award,
-    image: 'https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=400&h=300&fit=crop',
+    image: '/supreme-tribunal.jpg',
   },
   {
     title: 'Províncias',
     description: '18 províncias com governadores nomeados pelo Presidente.',
     icon: MapPin,
-    image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop',
+    image: '/angola-provinces.png',
   },
 ]
 
