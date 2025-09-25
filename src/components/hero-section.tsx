@@ -127,7 +127,7 @@ export function HeroSection({
           {titleWords.map((word, index) => (
             <motion.span
               key={index}
-              className={cn('inline-block mr-4 md:mr-8', textColor)}
+              className={cn('inline-block mr-4 capitalize md:mr-8', textColor)}
               variants={{
                 hidden: {
                   y: 200,
@@ -145,7 +145,7 @@ export function HeroSection({
                   },
                 },
               }}
-              style={{ transformOrigin: 'center bottom' }}
+              style={{ transformOrigin: 'center bottom ' }}
             >
               {word}
             </motion.span>

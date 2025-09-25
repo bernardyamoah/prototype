@@ -2,10 +2,13 @@
 
 import { LanguageSwitcher } from '@/components/language-switcher'
 import { Button } from '@/components/ui/button'
-import { Menu, User, X } from 'lucide-react'
+import { Separator } from '@/components/ui/separator'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { ChevronRight, Menu, User } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 const mainNavItems = [
   { name: 'INSTITUCIONAL', link: '/institucional' },
@@ -24,37 +27,53 @@ export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
 
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-
-    // Cleanup on unmount
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isMenuOpen])
-
-  // Close menu on window resize to desktop size
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024 && isMenuOpen) {
+  const NavLink = ({
+    href,
+    children,
+    isActive,
+    className = '',
+    onClick = () => {},
+  }: {
+    href: string
+    children: React.ReactNode
+    isActive: boolean
+    className?: string
+    onClick?: () => void
+  }) => (
+    <Link
+      href={href}
+      onClick={() => {
+        onClick()
         setIsMenuOpen(false)
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [isMenuOpen])
+      }}
+      className={`
+        group relative flex items-center justify-between p-4  transition-all duration-300 ease-out
+        ${
+          isActive
+            ? 'text-brand-orange border-l-4 border-brand-orange'
+            : 'text-gray-700  group-hover:text-primary hover:translate-x-1'
+        }
+        ${className}
+      `}
+    >
+      <span className="font-medium">{children}</span>
+      <div className="flex items-center space-x-2">
+        <ChevronRight
+          className={`w-4 h-4 transition-all duration-300 ${
+            isActive
+              ? 'text-brand-orange translate-x-1'
+              : 'text-gray-400 group-hover:text-primary group-hover:translate-x-1'
+          }`}
+        />
+      </div>
+    </Link>
+  )
 
   return (
     <>
-      <nav className="w-full bg-transparent absolute isolate z-10 px-2">
+      <nav className="w-full bg-transparent absolute isolate pt-4 z-10 px-2">
         {/* Top Navigation Bar - Hidden on mobile */}
-        <div className="hidden md:block px-8 lg:px-25 text-white py-2 max-w-(--breakpoint-xl) mx-auto">
+        <div className="hidden md:block px-8 lg:px-25 text-white py-0 max-w-(--breakpoint-xl) mx-auto">
           <div className="container mx-auto px-4 flex justify-between items-center text-xs">
             <div className="flex space-x-6">
               {topNavItems.map((item) => (
@@ -82,7 +101,7 @@ export function Navigation() {
         </div>
 
         {/* Main Navigation */}
-        <div className="mt-4 md:mt-10 mx-2 md:mx-0 px-3 md:px-8 lg:px-25 text-white py-3 md:py-2 max-w-(--breakpoint-xl) md:mx-auto rounded-full bg-white border-b border shadow-sm">
+        <div className="mt-4 md:mt-6 mx-2 px-3 md:px-8 lg:px-25 text-white py-1 md:py-2 max-w-(--breakpoint-xl) md:mx-auto rounded-full bg-white border-b border shadow-sm">
           <div className="container mx-auto px-2 md:px-4">
             <div className="flex items-center justify-between">
               {/* Desktop Navigation */}
@@ -111,10 +130,13 @@ export function Navigation() {
 
               {/* Logo - Always visible */}
               <Link href="/" className="flex flex-col text-center">
-                <div className="font-bold text-brand-orange text-base md:text-lg lg:text-xl">
-                  VISIT ANGOLA
-                </div>
-                <div className="text-xs text-brand-green font-medium -mt-1">The rhythm of life</div>
+                <Image
+                  src="/visit-angola-logo.svg"
+                  alt="Logo"
+                  width={100}
+                  height={100}
+                  className="size-13 object-cover"
+                />
               </Link>
 
               {/* Desktop Navigation Right */}
@@ -151,127 +173,122 @@ export function Navigation() {
                 </Link>
               </div>
 
-              {/* Mobile Menu Button */}
-              <Button
-                variant="ghost"
-                size="sm"
-                className="lg:hidden text-brand-orange hover:bg-brand-orange/10 p-2"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                aria-label="Toggle menu"
-              >
-                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </Button>
+              {/* Mobile Menu using shadcn Sheet */}
+              <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="lg:hidden text-brand-orange hover:bg-brand-orange/10 p-2 transition-all duration-200 hover:scale-105"
+                  >
+                    <Menu className="w-5 h-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-80 sm:w-96 p-0 overflow-hidden">
+                  <SheetHeader className="p-6 pb-4 bg-gradient-to-r from-white via-orange-50/30 to-white border-b">
+                    <SheetTitle className="flex items-center space-x-3">
+                      <Image
+                        src="/visit-angola-logo.svg"
+                        alt="Visit Angola Logo"
+                        width={48}
+                        height={48}
+                        className="w-12 h-12"
+                      />
+                    </SheetTitle>
+                  </SheetHeader>
+
+                  <div className="flex-1 overflow-y-auto p-6 space-y-8">
+                    {/* Main Navigation */}
+                    <div className="space-y-4">
+                      <div className="flex items-center space-x-2">
+                        <h3 className="text-sm  text-[#446D55] uppercase tracking-wide">
+                          Menu Principal
+                        </h3>
+                      </div>
+
+                      <div className="space-y-2">
+                        {mainNavItems.map((item) => {
+                          const isActive =
+                            pathname === item.link || (item.link === '/' && pathname === '/')
+                          return (
+                            <NavLink
+                              key={item.name}
+                              href={item.link}
+                              isActive={isActive}
+                              className="text-base"
+                            >
+                              {item.name}
+                            </NavLink>
+                          )
+                        })}
+                      </div>
+                    </div>
+
+                    <Separator className="my-6" />
+
+                    {/* Support Section */}
+                    <div className="space-y-4">
+                      <div className="flex items-center space-x-2">
+                        <h3 className="text-sm  text-[#446D55] uppercase tracking-wide">
+                          Suporte & Contacto
+                        </h3>
+                      </div>
+
+                      <div className="space-y-2">
+                        {topNavItems.map((item) => {
+                          const isActive = pathname === item.href
+                          return (
+                            <NavLink
+                              key={item.name}
+                              href={item.href}
+                              isActive={isActive}
+                              className="text-sm"
+                            >
+                              {item.name}
+                            </NavLink>
+                          )
+                        })}
+                      </div>
+                    </div>
+
+                    <Separator className="my-6" />
+
+                    {/* Language Switcher */}
+                    <div className="space-y-4">
+                      <div className="flex items-center space-x-2">
+                        <h3 className="text-sm  text-[#446D55] uppercase tracking-wide">Idioma</h3>
+                      </div>
+
+                      <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors duration-200">
+                        <LanguageSwitcher />
+                      </div>
+                    </div>
+
+                    <Separator className="my-6" />
+
+                    {/* Login Button */}
+                    <div className="space-y-4">
+                      <div className="flex items-center space-x-2">
+                        <h3 className="text-sm  text-[#446D55] uppercase tracking-wide">Conta</h3>
+                      </div>
+
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="transition-all duration-300 group"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <User className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform duration-200" />
+                        <span className="font-medium">LOGIN SESSÃO</span>
+                      </Button>
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
         </div>
       </nav>
-
-      {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div
-          className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-50"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          <div
-            className="absolute top-0 right-0 w-72 sm:w-80 max-w-[85vw] h-full bg-white shadow-xl transform transition-transform duration-300 ease-in-out overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Mobile Menu Header */}
-            <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 bg-white sticky top-0">
-              <div className="flex flex-col">
-                <div className="font-bold text-brand-orange text-base sm:text-lg">VISIT ANGOLA</div>
-                <div className="text-xs text-brand-green font-medium">The rhythm of life</div>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-gray-500 hover:text-gray-700 p-2"
-              >
-                <X className="w-5 h-5" />
-              </Button>
-            </div>
-
-            {/* Mobile Menu Content */}
-            <div className="px-4 sm:px-6 py-6 pb-8">
-              {/* Main Navigation Items */}
-              <div className="space-y-4 sm:space-y-6">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
-                  Menu Principal
-                </h3>
-                <div className="space-y-3 sm:space-y-4">
-                  {mainNavItems.map((item) => {
-                    const isActive =
-                      pathname === item.link || (item.link === '/explore' && pathname === '/')
-                    return (
-                      <Link
-                        key={item.name}
-                        href={item.link}
-                        className={`block text-base sm:text-lg font-medium transition-colors py-2 px-3 -mx-3 rounded-lg ${
-                          isActive
-                            ? 'text-brand-orange bg-brand-orange/10 border-l-4 border-brand-orange'
-                            : 'text-gray-800 hover:text-brand-orange hover:bg-brand-orange/5'
-                        }`}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    )
-                  })}
-                </div>
-              </div>
-
-              {/* Secondary Navigation */}
-              <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                  Suporte
-                </h3>
-                <div className="space-y-3 sm:space-y-4">
-                  {topNavItems.map((item) => {
-                    const isActive = pathname === item.href
-                    return (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className={`block text-sm sm:text-base font-medium transition-colors py-2 px-3 -mx-3 rounded-lg ${
-                          isActive
-                            ? 'text-brand-orange bg-brand-orange/10 border-l-4 border-brand-orange'
-                            : 'text-gray-600 hover:text-brand-orange hover:bg-brand-orange/5'
-                        }`}
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    )
-                  })}
-                </div>
-              </div>
-
-              {/* Language Switcher */}
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                  Idioma
-                </h3>
-                <div className="px-3 py-2">
-                  <LanguageSwitcher />
-                </div>
-              </div>
-
-              {/* Login Button */}
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <Button
-                  variant="outline"
-                  className="w-full text-brand-orange border-brand-orange hover:bg-brand-orange hover:text-white transition-all duration-200 h-12 text-sm font-medium"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <User className="w-4 h-4 mr-2" />
-                  LOGIN SESSÃO
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   )
 }

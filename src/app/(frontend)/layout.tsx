@@ -3,15 +3,22 @@ import { LocaleProvider } from '@/components/locale-provider'
 import { Navigation } from '@/components/navigation'
 import { Loader2 } from 'lucide-react'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import type React from 'react'
 import { Suspense } from 'react'
 import './globals.css'
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  weight: ['300', '400', '500', '600', '700'],
+const fagun = localFont({
+  src: [
+    { path: './fonts/Fagun-Light.woff', weight: '400' },
+    { path: './fonts/Fagun-Medium.woff', weight: '500' },
+  ],
+  variable: '--font-fagun',
+})
+
+const fredella = localFont({
+  src: './fonts/Fredella.ttf',
+  variable: '--font-fredella',
 })
 
 export const metadata: Metadata = {
@@ -30,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt">
-      <body className={`font-sans relative ${inter.variable}`}>
+      <body className={`font-sans relative  ${fagun.variable} ${fredella.variable}`}>
         <LocaleProvider defaultLocale="pt">
           <Suspense
             fallback={

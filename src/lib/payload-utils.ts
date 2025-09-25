@@ -1,9 +1,8 @@
 import config from '@payload-config'
-import { DataFromCollectionSlug, PaginatedDocs } from 'payload';
-import { CollectionSlug, getPayload } from 'payload'
+import { getPayload } from 'payload'
 
 export async function getEvents({
-  locale='pt',
+  locale = 'pt',
   status = 'published', // Default to published for public queries
 }: { locale?: 'pt' | 'en'; status?: 'draft' | 'published' } = {}) {
   const payload = await getPayload({ config })

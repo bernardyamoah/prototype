@@ -73,132 +73,134 @@ const PatrimonioCulturalCarousel = () => {
   }
 
   return (
-    <section className="max-w-(--breakpoint-xl) mx-auto w-full">
-      {/* Header */}
-      <motion.div
-        className="text-center mb-16"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
-        <AnimatedDividerBar color="bg-[#2356a3]" maxHeight={70} />
-        <motion.h2
-          className="text-2xl md:text-3xl font-bold text-[#2356a3] mb-6 leading-tight"
-          initial={{ opacity: 0, y: 20 }}
+    <div className="bg-[#f2f7fc] pb-20 px-4">
+      <section className="max-w-(--breakpoint-xl) mx-auto w-full">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          Patrimônio Cultural
-        </motion.h2>
-      </motion.div>
+          <AnimatedDividerBar color="bg-[#2356a3]" maxHeight={70} />
+          <motion.h2
+            className="text-2xl md:text-3xl font-bold text-[#2356a3] mb-6 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            Patrimônio Cultural
+          </motion.h2>
+        </motion.div>
 
-      <div className="w-full flex flex-col">
-        <div className="flex gap-4 lg:grid grid-cols-4 flex-col">
-          <div className="lg:col-span-1 w-full">
-            {/* Navigation arrows */}
-            <div className="mb-30">
-              <div className="flex gap-4">
-                <Button
-                  disabled={!api?.canScrollPrev}
-                  onClick={handlePrevious}
-                  variant={'ghost'}
-                  size={'icon'}
-                  className="bg-gray-200 p-3 rounded-full hover:bg-gray-300 transition-colors"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </Button>
-                <Button
-                  variant={'ghost'}
-                  size={'icon'}
-                  disabled={!api?.canScrollNext}
-                  onClick={handleNext}
-                  className="bg-[#2356a3] p-3 rounded-full hover:bg-[#2356a3]/80 transition-colors"
-                >
-                  <ChevronRight className="w-5 h-5 text-white" />
-                </Button>
+        <div className="w-full flex flex-col">
+          <div className="flex gap-4 lg:grid grid-cols-4 flex-col">
+            <div className="lg:col-span-1 w-full">
+              {/* Navigation arrows */}
+              <div className="mb-30">
+                <div className="flex gap-4">
+                  <Button
+                    disabled={!api?.canScrollPrev}
+                    onClick={handlePrevious}
+                    variant={'ghost'}
+                    size={'icon'}
+                    className="bg-gray-200 p-3 rounded-full hover:bg-gray-300 transition-colors"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </Button>
+                  <Button
+                    variant={'ghost'}
+                    size={'icon'}
+                    disabled={!api?.canScrollNext}
+                    onClick={handleNext}
+                    className="bg-[#2356a3] p-3 rounded-full hover:bg-[#2356a3]/80 transition-colors"
+                  >
+                    <ChevronRight className="w-5 h-5 text-white" />
+                  </Button>
+                </div>
               </div>
+
+              <motion.h3
+                className="text-4xl md:text-5xl font-bold text-gray-900 mb-8"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                Rica Herança Cultural
+              </motion.h3>
+
+              <p className="text-gray-600 mb-6">
+                A riqueza cultural de Angola reflete-se na sua música, dança, artesanato e tradições
+                que atravessaram gerações.
+              </p>
             </div>
 
-            <motion.h3
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+            <Carousel
+              setApi={setApi}
+              className="flex lg:col-span-3"
+              plugins={[
+                Autoplay({
+                  delay: 5000,
+                  stopOnInteraction: true,
+                  stopOnMouseEnter: true,
+                }),
+              ]}
+              opts={{
+                align: 'start',
+                loop: true,
+                slidesToScroll: 1,
+              }}
             >
-              Rica Herança Cultural
-            </motion.h3>
-
-            <p className="text-gray-600 mb-6">
-              A riqueza cultural de Angola reflete-se na sua música, dança, artesanato e tradições
-              que atravessaram gerações.
-            </p>
+              <CarouselContent className="-ml-6 h-full p-3">
+                {culturalHighlights.map((item, index) => (
+                  <CarouselItem key={item.title} className="pl-6 sm:basis-1/2 md:basis-1/3">
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="group relative overflow-hidden rounded-xl bg-gray-100  h-full"
+                    >
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        width={300}
+                        height={400}
+                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                        <p className="text-gray-200 text-sm leading-relaxed">{item.description}</p>
+                      </div>
+                    </motion.div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </div>
 
-          <Carousel
-            setApi={setApi}
-            className="flex lg:col-span-3"
-            plugins={[
-              Autoplay({
-                delay: 5000,
-                stopOnInteraction: true,
-                stopOnMouseEnter: true,
-              }),
-            ]}
-            opts={{
-              align: 'start',
-              loop: true,
-              slidesToScroll: 1,
-            }}
-          >
-            <CarouselContent className="-ml-6 h-full p-3">
-              {culturalHighlights.map((item, index) => (
-                <CarouselItem key={item.title} className="pl-6 sm:basis-1/2 md:basis-1/3">
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="group relative overflow-hidden rounded-xl bg-gray-100  h-full"
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      width={300}
-                      height={400}
-                      className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                      <p className="text-gray-200 text-sm leading-relaxed">{item.description}</p>
-                    </div>
-                  </motion.div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+          {/* Dots Navigation */}
+          <div className="flex justify-center mt-8 gap-2">
+            {culturalHighlights.map((_, index) => (
+              <motion.button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className="transition-all duration-300 rounded-full"
+                aria-label={`Ir para o slide ${index + 1}`}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                animate={{
+                  width: index === current - 1 ? 48 : 12,
+                  height: 12,
+                  backgroundColor: index === current - 1 ? '#2356a3' : '#2356a3',
+                }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+              />
+            ))}
+          </div>
         </div>
-
-        {/* Dots Navigation */}
-        <div className="flex justify-center mt-8 gap-2">
-          {culturalHighlights.map((_, index) => (
-            <motion.button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className="transition-all duration-300 rounded-full"
-              aria-label={`Ir para o slide ${index + 1}`}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              animate={{
-                width: index === current - 1 ? 48 : 12,
-                height: 12,
-                backgroundColor: index === current - 1 ? '#2356a3' : '#2356a3',
-              }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   )
 }
 

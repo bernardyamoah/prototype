@@ -70,6 +70,10 @@ export interface Config {
     users: User;
     media: Media;
     events: Event;
+    'page-headers': PageHeader;
+    'page-sections': PageSection;
+    'tourist-packages': TouristPackage;
+    vision: Vision;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +83,10 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
+    'page-headers': PageHeadersSelect<false> | PageHeadersSelect<true>;
+    'page-sections': PageSectionsSelect<false> | PageSectionsSelect<true>;
+    'tourist-packages': TouristPackagesSelect<false> | TouristPackagesSelect<true>;
+    vision: VisionSelect<false> | VisionSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -203,6 +211,197 @@ export interface Event {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-headers".
+ */
+export interface PageHeader {
+  id: string;
+  title: string;
+  subtitle?: string | null;
+  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'recursos' | 'custom';
+  backgroundImage: string | Media;
+  textColor?: ('text-white' | 'text-black' | 'text-primary' | 'custom') | null;
+  /**
+   * Enter a custom text color class or hex value
+   */
+  customTextColor?: string | null;
+  /**
+   * Set whether this header is active
+   */
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-sections".
+ */
+export interface PageSection {
+  id: string;
+  /**
+   * Internal title for this section (not displayed on the site)
+   */
+  title: string;
+  type:
+    | 'text'
+    | 'gallery'
+    | 'features'
+    | 'stats'
+    | 'faq'
+    | 'government-cards'
+    | 'investment-cards'
+    | 'events-carousel'
+    | 'custom';
+  page: 'home' | 'explore' | 'facilidades' | 'institucional' | 'investe' | 'recursos';
+  heading?: string | null;
+  subheading?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  media?:
+    | {
+        image: string | Media;
+        caption?: string | null;
+        altText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  features?:
+    | {
+        title: string;
+        description?: string | null;
+        /**
+         * Icon name (e.g., "map", "calendar", "users")
+         */
+        icon?: string | null;
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  stats?:
+    | {
+        label: string;
+        value: string;
+        icon?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  testimonials?:
+    | {
+        quote: string;
+        author: string;
+        role?: string | null;
+        avatar?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  faqs?:
+    | {
+        question: string;
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
+  governmentCards?:
+    | {
+        title: string;
+        description: string;
+        /**
+         * Lucide icon name (e.g., "building", "users", "briefcase")
+         */
+        icon?: string | null;
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  investmentCards?:
+    | {
+        name: string;
+        description: string;
+        /**
+         * Emoji or icon character
+         */
+        icon?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  eventsCarouselSettings?: {
+    showOnlyPublished?: boolean | null;
+    /**
+     * Maximum number of events to display
+     */
+    maxEvents?: number | null;
+  };
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tourist-packages".
+ */
+export interface TouristPackage {
+  id: string;
+  name: string;
+  description: string;
+  /**
+   * Enter the price of the package in USD.
+   */
+  price: number;
+  /**
+   * E.g., "3 days / 2 nights" or "1 week".
+   */
+  duration: string;
+  locations: {
+    /**
+     * E.g., Luanda, Namibe, Benguela, etc.
+     */
+    location: string;
+    id?: string | null;
+  }[];
+  image: string | Media;
+  /**
+   * Optional detailed itinerary of the package.
+   */
+  itinerary?: string | null;
+  /**
+   * Check to mark this package as featured for prominent display.
+   */
+  featured?: boolean | null;
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vision".
+ */
+export interface Vision {
+  id: string;
+  title: string;
+  description: string;
+  timeline: {
+    year: string;
+    goal: string;
+    id?: string | null;
+  }[];
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -219,6 +418,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'events';
         value: string | Event;
+      } | null)
+    | ({
+        relationTo: 'page-headers';
+        value: string | PageHeader;
+      } | null)
+    | ({
+        relationTo: 'page-sections';
+        value: string | PageSection;
+      } | null)
+    | ({
+        relationTo: 'tourist-packages';
+        value: string | TouristPackage;
+      } | null)
+    | ({
+        relationTo: 'vision';
+        value: string | Vision;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -348,6 +563,140 @@ export interface EventsSelect<T extends boolean = true> {
   location?: T;
   link?: T;
   image?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-headers_select".
+ */
+export interface PageHeadersSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  page?: T;
+  backgroundImage?: T;
+  textColor?: T;
+  customTextColor?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-sections_select".
+ */
+export interface PageSectionsSelect<T extends boolean = true> {
+  title?: T;
+  type?: T;
+  page?: T;
+  heading?: T;
+  subheading?: T;
+  content?: T;
+  media?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        altText?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        image?: T;
+        id?: T;
+      };
+  stats?:
+    | T
+    | {
+        label?: T;
+        value?: T;
+        icon?: T;
+        id?: T;
+      };
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        author?: T;
+        role?: T;
+        avatar?: T;
+        id?: T;
+      };
+  faqs?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  governmentCards?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        image?: T;
+        id?: T;
+      };
+  investmentCards?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  eventsCarouselSettings?:
+    | T
+    | {
+        showOnlyPublished?: T;
+        maxEvents?: T;
+      };
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tourist-packages_select".
+ */
+export interface TouristPackagesSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  price?: T;
+  duration?: T;
+  locations?:
+    | T
+    | {
+        location?: T;
+        id?: T;
+      };
+  image?: T;
+  itinerary?: T;
+  featured?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vision_select".
+ */
+export interface VisionSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        goal?: T;
+        id?: T;
+      };
   status?: T;
   updatedAt?: T;
   createdAt?: T;

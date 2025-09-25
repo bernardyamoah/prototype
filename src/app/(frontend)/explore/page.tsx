@@ -1,6 +1,4 @@
 import { HeroSection } from '@/components/hero-section'
-import { Button } from '@/components/ui/button'
-import ExploreCarousel from './_component/explore-tours'
 
 export default function ExplorePage() {
   return (
@@ -13,7 +11,7 @@ export default function ExplorePage() {
 
       {/* Featured Tours Section */}
       <div className="bg-[#f7f0df]">
-        {/* <ExploreCarousel /> */}
+      
       </div>
 
   

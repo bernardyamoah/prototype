@@ -1,15 +1,25 @@
 'use client'
-import { Event } from '@/payload-types'
+import { TouristPackage } from '@/payload-types' // Adjust path to your types
 import { MapPin } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import Image from 'next/image'
 import { useState } from 'react'
-const TouristSiteCard = ({ event, isActive }: { event: Event; isActive: boolean }) => {
+
+const TouristPackageCard = ({
+  package: pkg,
+  isActive,
+}: {
+  package: TouristPackage
+  isActive: boolean
+}) => {
   const [isHovered, setIsHovered] = useState(false)
+
+  // Join location names for display
+  const locationString = pkg.locations.map((loc) => loc.location).join(', ')
 
   return (
     <motion.div
-      className={`relative group rounded-2xl overflow-hidden h-[35rem] cursor-pointer `}
+      className="relative group rounded-2xl overflow-hidden h-[35rem] cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       animate={{
@@ -33,13 +43,13 @@ const TouristSiteCard = ({ event, isActive }: { event: Event; isActive: boolean 
         }}
       >
         <Image
-          src={typeof event.image === 'string' ? event.image : event.image.url!}
-          alt={event.title || 'Tourist site image'}
+          src={typeof pkg.image === 'string' ? pkg.image : pkg.image.url!}
+          alt={pkg.name || 'Tourist package image'}
           fill
           className="object-cover"
           placeholder="blur"
           blurDataURL={
-            typeof event.image === 'string' ? event.image : event.image.thumbnailURL! // Use the same image as a low-quality placeholder
+            typeof pkg.image === 'string' ? pkg.image : pkg.image.thumbnailURL! // Use thumbnail as placeholder
           }
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
@@ -66,19 +76,19 @@ const TouristSiteCard = ({ event, isActive }: { event: Event; isActive: boolean 
           transition={{ duration: 0.3, ease: 'easeOut' }}
         >
           <MapPin className="w-4 h-4" />
-          <span>{event.location}</span>
+          <span>{locationString || 'Multiple Locations'}</span>
         </motion.div>
 
+        {/* Package Name */}
         <motion.h3
           className="text-2xl font-bold mb-3 lg:line-clamp-1 group-hover:line-clamp-none"
           animate={{ y: isHovered ? -5 : 0 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
         >
-          {event.title}
+          {pkg.name}
         </motion.h3>
 
-        {/* Tour Details */}
-
+        {/* Package Details */}
         <AnimatePresence>
           {isHovered && (
             <motion.div
@@ -92,18 +102,26 @@ const TouristSiteCard = ({ event, isActive }: { event: Event; isActive: boolean 
               }}
             >
               <motion.p
-                className="text-sm opacity-90 mb-4 line-clamp-3"
+                className="text-sm opacity-90 mb-2 line-clamp-3"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.9 }}
                 transition={{ delay: 0.2, duration: 0.3 }}
               >
-                {event.description}
+                {pkg.description}
+              </motion.p>
+
+              <motion.p
+                className="text-sm font-semibold mb-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.9 }}
+                transition={{ delay: 0.3, duration: 0.3 }}
+              >
+                {pkg.duration} | ${pkg.price} USD
               </motion.p>
 
               <motion.a
-                href={event.link}
-                target="_blank"
-                className="bg-white text-black px-6 py-2 rounded-lg text-sm font-semibold hover:bg-white/90 transition-colors flex-1 text-center "
+                href={`/packages/${pkg.id}`} // Adjust link as needed
+                className="bg-white text-black px-6 py-2 rounded-lg text-sm font-semibold hover:bg-white/90 transition-colors flex-1 text-center"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.3 }}
@@ -120,4 +138,4 @@ const TouristSiteCard = ({ event, isActive }: { event: Event; isActive: boolean 
   )
 }
 
-export default TouristSiteCard
+export default TouristPackageCard

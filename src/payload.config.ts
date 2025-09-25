@@ -11,7 +11,11 @@ import { fileURLToPath } from 'url'
 
 import Events from './collections/Events'
 import { Media } from './collections/Media'
+import PageHeaders from './collections/PageHeaders'
+import PageSections from './collections/PageSections'
+import TouristPackages from './collections/TouristPackage'
 import { Users } from './collections/Users'
+import Vision from './collections/Vision'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,7 +27,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Events],
+  collections: [Users, Media, Events, PageHeaders, PageSections, TouristPackages,Vision],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

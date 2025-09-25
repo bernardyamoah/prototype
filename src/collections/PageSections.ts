@@ -28,8 +28,11 @@ export const PageSections: CollectionConfig = {
         { label: 'Image Gallery', value: 'gallery' },
         { label: 'Feature List', value: 'features' },
         { label: 'Statistics', value: 'stats' },
-        { label: 'Testimonials', value: 'testimonials' },
+
         { label: 'FAQ', value: 'faq' },
+        { label: 'Government Cards', value: 'government-cards' },
+        { label: 'Investment Cards', value: 'investment-cards' },
+        { label: 'Events Carousel', value: 'events-carousel' },
         { label: 'Custom Component', value: 'custom' },
       ],
     },
@@ -38,12 +41,12 @@ export const PageSections: CollectionConfig = {
       type: 'select',
       required: true,
       options: [
+        { label: 'Home', value: 'home' },
         { label: 'Explore', value: 'explore' },
         { label: 'Facilidades', value: 'facilidades' },
         { label: 'Institucional', value: 'institucional' },
         { label: 'Investe', value: 'investe' },
         { label: 'Recursos', value: 'recursos' },
-        { label: 'Home', value: 'home' },
       ],
     },
     {
@@ -201,76 +204,99 @@ export const PageSections: CollectionConfig = {
       ],
     },
     {
-      name: 'customComponentName',
-      type: 'text',
+      name: 'governmentCards',
+      type: 'array',
       admin: {
-        condition: (data, siblingData) => siblingData?.type === 'custom',
-        description: 'Name of the custom component to render (e.g., "ExploreCarousel")',
+        condition: (data, siblingData) => siblingData?.type === 'government-cards',
       },
-    },
-    {
-      name: 'backgroundColor',
-      type: 'select',
-      options: [
-        { label: 'White', value: 'bg-white' },
-        { label: 'Light', value: 'bg-[#f7f0df]' },
-        { label: 'Primary', value: 'bg-primary' },
-        { label: 'Secondary', value: 'bg-secondary' },
-        { label: 'Custom', value: 'custom' },
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'icon',
+          type: 'text',
+          admin: {
+            description: 'Lucide icon name (e.g., "building", "users", "briefcase")',
+          },
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
       ],
-      defaultValue: 'bg-white',
     },
     {
-      name: 'customBackgroundColor',
-      type: 'text',
+      name: 'investmentCards',
+      type: 'array',
       admin: {
-        condition: (data, siblingData) => siblingData?.backgroundColor === 'custom',
+        condition: (data, siblingData) => siblingData?.type === 'investment-cards',
       },
-    },
-    {
-      name: 'textColor',
-      type: 'select',
-      options: [
-        { label: 'Dark', value: 'text-gray-900' },
-        { label: 'Light', value: 'text-white' },
-        { label: 'Primary', value: 'text-primary' },
-        { label: 'Secondary', value: 'text-secondary' },
-        { label: 'Custom', value: 'custom' },
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'icon',
+          type: 'text',
+          admin: {
+            description: 'Emoji or icon character',
+          },
+        },
       ],
-      defaultValue: 'text-gray-900',
     },
     {
-      name: 'customTextColor',
-      type: 'text',
+      name: 'eventsCarouselSettings',
+      type: 'group',
       admin: {
-        condition: (data, siblingData) => siblingData?.textColor === 'custom',
+        condition: (data, siblingData) => siblingData?.type === 'events-carousel',
       },
-    },
-    {
-      name: 'paddingY',
-      type: 'select',
-      options: [
-        { label: 'None', value: 'py-0' },
-        { label: 'Small', value: 'py-8' },
-        { label: 'Medium', value: 'py-16' },
-        { label: 'Large', value: 'py-24' },
+      fields: [
+        {
+          name: 'showOnlyPublished',
+          type: 'checkbox',
+          defaultValue: true,
+        },
+        {
+          name: 'maxEvents',
+          type: 'number',
+          defaultValue: 10,
+          admin: {
+            description: 'Maximum number of events to display',
+          },
+        },
       ],
-      defaultValue: 'py-16',
     },
+  
+  
+  
+  
     {
       name: 'isActive',
       type: 'checkbox',
       defaultValue: true,
       admin: {
         position: 'sidebar',
-      },
-    },
-    {
-      name: 'order',
-      type: 'number',
-      admin: {
-        position: 'sidebar',
-        description: 'Display order (lower numbers appear first)',
       },
     },
   ],

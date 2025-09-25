@@ -31,7 +31,6 @@ export const PageHeaders: CollectionConfig = {
         { label: 'Institucional', value: 'institucional' },
         { label: 'Investe', value: 'investe' },
         { label: 'Recursos', value: 'recursos' },
-        { label: 'Home', value: 'home' },
         { label: 'Custom', value: 'custom' },
       ],
     },

@@ -1,4 +1,8 @@
 import { HeroSection } from '@/components/hero-section'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Calendar, DollarSign, Download, ExternalLink, FileText, Globe, Handshake, Phone, Users } from 'lucide-react'
 
 export default function RecursosPage() {
   const campaigns = [
@@ -169,6 +173,286 @@ export default function RecursosPage() {
         subtitle="Informações, campanhas e ferramentas para o desenvolvimento do turismo em Angola"
         backgroundImage="/placeholder.svg?height=600&width=1200&text=Resources+Angola"
       />
+            {/* Campanhas do Turismo */}
+            <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Campanhas do Turismo
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Iniciativas de promoção e marketing para posicionar Angola como destino turístico de
+              referência.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {campaigns.map((campaign) => (
+              <Card
+                key={campaign.title}
+                className="overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div
+                  className="h-48 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${campaign.image})` }}
+                />
+                <CardHeader>
+                  <div className="flex justify-between items-start mb-2">
+                    <CardTitle className="text-xl">{campaign.title}</CardTitle>
+                    <Badge variant={campaign.status === 'Ativa' ? 'default' : 'secondary'}>
+                      {campaign.status}
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{campaign.description}</p>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    <div className="flex items-center text-sm">
+                      <Calendar className="w-4 h-4 mr-2 text-primary" />
+                      <span>{campaign.period}</span>
+                    </div>
+                    <div className="flex items-center text-sm">
+                      <Users className="w-4 h-4 mr-2 text-primary" />
+                      <span>Alcance: {campaign.reach}</span>
+                    </div>
+                    <Button className="w-full mt-4">Ver Detalhes</Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Agenda de Turismo */}
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Agenda de Turismo
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Eventos, conferências e atividades do setor turístico ao longo do ano.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {tourismAgenda.map((month) => (
+              <Card key={month.month} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl flex items-center">
+                    <Calendar className="w-5 h-5 mr-2 text-primary" />
+                    {month.month}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {month.events.map((event) => (
+                      <div key={event.name} className="border-l-2 border-primary pl-4">
+                        <h4 className="font-semibold">{event.name}</h4>
+                        <div className="flex justify-between items-center mt-1">
+                          <span className="text-sm text-muted-foreground">{event.date}</span>
+                          <Badge variant="outline" className="text-xs">
+                            {event.type}
+                          </Badge>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-1">📍 {event.location}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Parceiros no Estrangeiro */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Parceiros no Estrangeiro
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Cooperação internacional para promoção do turismo angolano no mundo.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {internationalPartners.map((partner) => (
+              <Card key={partner.country} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl flex items-center">
+                    <Globe className="w-5 h-5 mr-2 text-primary" />
+                    {partner.country}
+                  </CardTitle>
+                  <p className="text-sm text-muted-foreground">{partner.organization}</p>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div>
+                      <p className="text-sm font-semibold mb-2">Áreas de Cooperação:</p>
+                      <p className="text-sm text-muted-foreground">{partner.cooperation}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold mb-2">Projetos Ativos:</p>
+                      <ul className="space-y-1">
+                        {partner.projects.map((project) => (
+                          <li key={project} className="text-sm flex items-center">
+                            <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
+                            {project}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="pt-2 border-t">
+                      <p className="text-xs text-muted-foreground">
+                        <strong>Contacto:</strong> {partner.contact}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Câmbio */}
+      <section className="py-16 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Câmbio</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Taxas de câmbio atualizadas para o Kwanza Angolano (AOA).
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl flex items-center">
+                  <DollarSign className="w-5 h-5 mr-2 text-primary" />
+                  Taxas de Câmbio Atuais
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">Última atualização: Hoje, 14:30</p>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {exchangeRates.map((rate) => (
+                    <div
+                      key={rate.currency}
+                      className="flex items-center justify-between p-3 border rounded-lg"
+                    >
+                      <div className="flex items-center">
+                        <span className="text-2xl mr-3">{rate.flag}</span>
+                        <div>
+                          <p className="font-semibold">{rate.currency}</p>
+                          <p className="text-sm text-muted-foreground">
+                            1 {rate.currency.split(' ')[0]} = {rate.rate}
+                          </p>
+                        </div>
+                      </div>
+                      <Badge
+                        variant={
+                          rate.trend === 'up'
+                            ? 'default'
+                            : rate.trend === 'down'
+                              ? 'destructive'
+                              : 'secondary'
+                        }
+                      >
+                        {rate.trend === 'up' ? '↗' : rate.trend === 'down' ? '↘' : '→'}{' '}
+                        {rate.trend}
+                      </Badge>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6 text-center">
+                  <Button variant="outline">
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Ver Histórico Completo
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Downloads e Recursos */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Downloads e Recursos
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Documentos, relatórios e material promocional para download.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {resources.map((category) => (
+              <Card key={category.category} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-xl flex items-center">
+                    <FileText className="w-5 h-5 mr-2 text-primary" />
+                    {category.category}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {category.items.map((item) => (
+                      <div
+                        key={item.name}
+                        className="flex items-center justify-between p-2 border rounded"
+                      >
+                        <div className="flex-1">
+                          <p className="text-sm font-medium">{item.name}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {item.type} • {item.size}
+                          </p>
+                        </div>
+                        <Button size="sm" variant="outline">
+                          <Download className="w-3 h-3" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-16 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Precisa de Mais Informações?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
+            A nossa equipa está disponível para fornecer recursos adicionais e apoio especializado.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" variant="secondary">
+              <Phone className="w-5 h-5 mr-2" />
+              Contactar Equipa
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
+            >
+              <Handshake className="w-5 h-5 mr-2" />
+              Solicitar Parceria
+            </Button>
+          </div>
+        </div>
+      </section>
     </div>
+  
+
   )
 }

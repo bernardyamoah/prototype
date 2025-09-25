@@ -4,12 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated to official Visit Angola brand colors from guidelines */
-  /* Official Visit Angola Brand Colors:
-     Orange: #D74B29 (RGB: 215, 75, 41)
-     Green: #446D55 (RGB: 68, 109, 85)  
-     Yellow: #E49E2F (RGB: 228, 158, 47)
-     Black: #000000 */
+
   --background: #ffffff; /* Clean white background */
   --foreground: #000000; /* Official black */
   --card: #fefefe; /* Slightly off-white for cards */
@@ -45,7 +40,7 @@
   --sidebar-ring: #d74b29;
 }
 
-.dark {
+/* .dark {
   --background: #1a1a1a;
   --foreground: #ffffff;
   --card: #2a2a2a;
@@ -78,15 +73,14 @@
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #3a3a3a;
   --sidebar-ring: #d74b29;
-}
+} */
 
-/* Added official Visit Angola brand fonts */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 @theme inline {
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "Inter", monospace;
-  --font-heading: "Inter", system-ui, sans-serif;
+  --font-sans: var(--font-fagun);
+  --font-mono: var(--font-fagun);
+
+  --font-heading:var(--font-fagella);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
