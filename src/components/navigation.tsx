@@ -133,9 +133,9 @@ export function Navigation() {
                 <Image
                   src="/visit-angola-logo.svg"
                   alt="Logo"
-                  width={100}
-                  height={100}
-                  className="size-13 object-cover"
+                  width={200}
+                  height={200}
+                  className="h-13 w-18 object-cover"
                 />
               </Link>
 
@@ -190,9 +190,9 @@ export function Navigation() {
                       <Image
                         src="/visit-angola-logo.svg"
                         alt="Visit Angola Logo"
-                        width={48}
-                        height={48}
-                        className="w-12 h-12"
+                        width={148}
+                        height={148}
+                        className="h-20 w-20 "
                       />
                     </SheetTitle>
                   </SheetHeader>
