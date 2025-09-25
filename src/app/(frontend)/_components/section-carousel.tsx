@@ -128,7 +128,7 @@ const SectionStructureCarousel = ({ section }: { section: PageSection }) => {
                 animate={{
                   width: index === current - 1 ? 48 : 12,
                   height: 12,
-                  backgroundColor: index === current - 1 ? '#f97316' : '#f97316',
+                  backgroundColor: index === current - 1 ? '#2356a3' : '#2356a3',
                 }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
               />

@@ -2,7 +2,7 @@ import { HeroSection } from '@/components/hero-section'
 import { getHeroSection } from '@/lib/get-header-section'
 import { getPageSections } from '@/lib/get-section'
 import { getEvents } from '@/lib/payload-utils'
-import { Event } from '@/payload-types'
+import { Event, PageSection } from '@/payload-types'
 import SectionStructureCarousel from './_components/section-carousel'
 import ExploreCarousel from './explore/_component/explore-tours'
 
@@ -14,12 +14,11 @@ export default async function HomePage(props: { params: Params; searchParams: Se
   const locale = (await searchParams).locale || 'pt'
   const heroSection = await getHeroSection({ locale, page: 'explore' })
   const events: Event[] = await getEvents()
-  const culturalExperience = await getPageSections({
+  const sections: PageSection[] = await getPageSections({
     locale,
     page: 'explore',
-    title: 'Experiência Cultural',
   })
-  console.log({ culturalExperience })
+  console.log({ sections })
   return (
     <div className="">
       <HeroSection
@@ -36,9 +35,11 @@ export default async function HomePage(props: { params: Params; searchParams: Se
         <ExploreCarousel events={events} />
       </div>
 
-      <div className="bg-[#fefefe] pb-20 px-4">
-        <SectionStructureCarousel section={culturalExperience[0]} />
-      </div>
+      {sections.map((section) => (
+        <div key={section.title} className="bg-[#fefefe] pb-20 px-4">
+          <SectionStructureCarousel section={section} />
+        </div>
+      ))}
     </div>
   )
 }
