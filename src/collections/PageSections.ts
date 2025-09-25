@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig } from 'payload'
 
 export const PageSections: CollectionConfig = {
   slug: 'page-sections',
@@ -64,7 +64,7 @@ export const PageSections: CollectionConfig = {
       type: 'richText',
       localized: true,
       admin: {
-        condition: (data, siblingData) => 
+        condition: (data, siblingData) =>
           ['text', 'features', 'stats', 'testimonials', 'faq'].includes(siblingData?.type),
       },
     },
@@ -72,8 +72,7 @@ export const PageSections: CollectionConfig = {
       name: 'media',
       type: 'array',
       admin: {
-        condition: (data, siblingData) => 
-          ['gallery', 'features'].includes(siblingData?.type),
+        condition: (data, siblingData) => ['gallery', 'features'].includes(siblingData?.type),
       },
       fields: [
         {
@@ -224,9 +223,26 @@ export const PageSections: CollectionConfig = {
         },
         {
           name: 'icon',
-          type: 'text',
+          type: 'select',
+          required: true,
+          options: [
+            { label: 'Building 2', value: 'building-2' },
+            { label: 'Building 2 (Lucide)', value: 'lucide:building-2' },
+            { label: 'Users', value: 'lucide:users' },
+            { label: 'Award', value: 'lucide:award' },
+            { label: 'Map Pin', value: 'lucide:map-pin' },
+            { label: 'Shield', value: 'lucide:shield' },
+            { label: 'Gavel', value: 'lucide:gavel' },
+            { label: 'Globe', value: 'lucide:globe' },
+            { label: 'Briefcase', value: 'lucide:briefcase' },
+            { label: 'Landmark', value: 'lucide:landmark' },
+            { label: 'Scale', value: 'lucide:scale-3' }, // Note: 'scale' might be 'scale-3' in Lucide
+            // Bonus: Mix in other collections
+            { label: 'Building Office', value: 'heroicons-building-office-2' },
+            { label: 'Justice Scale', value: 'fa:balance-scale' },
+          ],
           admin: {
-            description: 'Lucide icon name (e.g., "building", "users", "briefcase")',
+            description: 'Select a Lucide icon for the government card.',
           },
         },
         {
@@ -287,10 +303,7 @@ export const PageSections: CollectionConfig = {
         },
       ],
     },
-  
-  
-  
-  
+
     {
       name: 'isActive',
       type: 'checkbox',
@@ -301,6 +314,6 @@ export const PageSections: CollectionConfig = {
     },
   ],
   timestamps: true,
-};
+}
 
-export default PageSections;
+export default PageSections

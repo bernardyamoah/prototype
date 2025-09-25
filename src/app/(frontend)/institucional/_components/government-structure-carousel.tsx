@@ -10,7 +10,6 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
-import { Award, Building2, MapPin, Users } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 
@@ -18,25 +17,25 @@ const governmentStructure = [
   {
     title: 'Presidente da República',
     description: 'Chefe de Estado e do Executivo, eleito por sufrágio universal direto.',
-    icon: Building2,
+    icon: 'building-2',
     image: '/angolan-president.jpg',
   },
   {
     title: 'Assembleia Nacional',
     description: 'Órgão legislativo unicameral com 220 deputados eleitos por 5 anos.',
-    icon: Users,
+    icon: 'users',
     image: '/assemblia.jpg',
   },
   {
     title: 'Tribunal Supremo',
     description: 'Órgão superior da hierarquia dos tribunais judiciais.',
-    icon: Award,
+    icon: 'award',
     image: '/supreme-tribunal.jpg',
   },
   {
     title: 'Províncias',
     description: '18 províncias com governadores nomeados pelo Presidente.',
-    icon: MapPin,
+    icon: 'map-pin',
     image: '/angola-provinces.png',
   },
 ]
@@ -47,13 +46,9 @@ const GovernmentStructureCarousel = () => {
   const [_, setCount] = useState(0)
 
   useEffect(() => {
-    if (!api) {
-      return
-    }
-
+    if (!api) return
     setCount(api.scrollSnapList().length)
     setCurrent(api.selectedScrollSnap() + 1)
-
     api.on('select', () => {
       setCurrent(api.selectedScrollSnap() + 1)
     })
@@ -63,9 +58,11 @@ const GovernmentStructureCarousel = () => {
     api?.scrollTo(index)
   }
 
+  // Map icon string to Lucide icon component
+
   return (
     <section className="pb-20 bg-[#f7f0df]">
-      <div className="max-w-(--breakpoint-xl)  mx-auto px-4">
+      <div className="max-w-(--breakpoint-xl) mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -102,23 +99,16 @@ const GovernmentStructureCarousel = () => {
           >
             <CarouselContent className="-ml-6 h-full p-3">
               {governmentStructure.map((item, index) => (
-                <CarouselItem
-                  key={item.title}
-                  className="pl-6 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
-                >
-                  <GovernmentCard item={item} index={index} />
+                <CarouselItem key={item.title} className="pl-6 sm:basis-1/2 md:basis-1/3 ">
+                  <GovernmentCard item={{ ...item }} index={index} />
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious
-              className="hidden lg:flex -left-10 border-2 border-[#2356a3] text-[#2356a3] hover:bg-[#2356a3] hover:text-white 
-          "
-            />
+            <CarouselPrevious className="hidden lg:flex -left-10 border-2 border-[#2356a3] text-[#2356a3] hover:bg-[#2356a3] hover:text-white" />
             <CarouselNext className="hidden lg:flex -right-10 border-2 border-[#2356a3] text-[#2356a3] hover:bg-[#2356a3] hover:text-white" />
           </Carousel>
         </div>
 
-        {/* Dots Navigation */}
         <div className="flex justify-center mt-8 gap-2">
           {governmentStructure.map((_, index) => (
             <motion.button

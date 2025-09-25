@@ -325,9 +325,22 @@ export interface PageSection {
         title: string;
         description: string;
         /**
-         * Lucide icon name (e.g., "building", "users", "briefcase")
+         * Select a Lucide icon for the government card.
          */
-        icon?: string | null;
+        icon:
+          | 'building-2'
+          | 'lucide:building-2'
+          | 'lucide:users'
+          | 'lucide:award'
+          | 'lucide:map-pin'
+          | 'lucide:shield'
+          | 'lucide:gavel'
+          | 'lucide:globe'
+          | 'lucide:briefcase'
+          | 'lucide:landmark'
+          | 'lucide:scale-3'
+          | 'heroicons-building-office-2'
+          | 'fa:balance-scale';
         image: string | Media;
         id?: string | null;
       }[]
