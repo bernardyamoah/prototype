@@ -1,12 +1,13 @@
+import type { PageSection } from '@/payload-types'
 import config from '@payload-config'
 import { getPayload } from 'payload'
-import type { PageSection } from '@/payload-types'
 
 interface GetPageSectionsParams {
   locale?: 'pt' | 'en'
   page?: string
   status?: 'draft' | 'published'
   type?: PageSection['type']
+  title?: PageSection['title']
 }
 
 /**
@@ -17,8 +18,9 @@ interface GetPageSectionsParams {
 export async function getPageSections({
   locale = 'pt',
   page,
-  status = 'published',
+ 
   type,
+  title,
 }: GetPageSectionsParams = {}): Promise<PageSection[]> {
   const payload = await getPayload({ config })
 
@@ -40,18 +42,21 @@ export async function getPageSections({
     where: {
       isActive: { equals: true },
     },
-    sort: 'createdAt', // Order by creation date
+
   }
 
   // Add filters
-  if (status) {
-    query.where.status = { equals: status }
-  }
+  
   if (page) {
     query.where.page = { equals: page }
   }
   if (type) {
     query.where.type = { equals: type }
+  }
+  if (title) {
+    query.where.title = {
+      equals: title,
+    }
   }
 
   try {

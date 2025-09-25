@@ -5,7 +5,7 @@ import Image from 'next/image'
 interface GovernmentStructureItem {
   title: string
   description: string
-  icon: React.ComponentType<{ className?: string }>
+  icon: React.ComponentType<{ className?: string } | any>
   image: string
 }
 
