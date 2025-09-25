@@ -2,15 +2,14 @@
 
 import ActivityCard from '@/components/cards/activity-card'
 import TouristSiteCard from '@/components/cards/tour-card'
-import TouristPackageCard from '@/components/cards/tour-package'
 import AnimatedDividerBar from '@/components/divide-bar'
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from '@/components/ui/carousel'
-import { TouristPackage } from '@/payload-types'
+import { Event } from '@/payload-types'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 
-export default function Facilidades({ touristPackages }: { touristPackages: TouristPackage[] }) {
+export default function Facilidades({ featuredEvents }: { featuredEvents: Event[] }) {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
 
@@ -20,32 +19,6 @@ export default function Facilidades({ touristPackages }: { touristPackages: Tour
     api.on('select', () => setCurrent(api.selectedScrollSnap()))
   }, [api])
 
-  const packages = [
-    {
-      id: 1,
-      title: 'Aventura nas Montanhas',
-      description:
-        'Explore as paisagens montanhosas mais impressionantes de Angola com guias especializados.',
-      image:
-        'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop',
-    },
-    {
-      id: 2,
-      title: 'Cristo Rei de Lubango',
-      description:
-        'Visite o famoso monumento Cristo Rei com vistas panorâmicas espetaculares da cidade.',
-      image:
-        'https://images.unsplash.com/photo-1558917551-823a97f3d4c5?q=80&w=2070&auto=format&fit=crop',
-    },
-    {
-      id: 3,
-      title: 'Paisagens Únicas',
-      description:
-        'Descubra formações geológicas extraordinárias e paisagens que só Angola oferece.',
-      image:
-        'https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?q=80&w=2070&auto=format&fit=crop',
-    },
-  ]
   const activities = [
     {
       id: 1,
@@ -79,72 +52,78 @@ export default function Facilidades({ touristPackages }: { touristPackages: Tour
   ]
   return (
     <>
-      {' '}
-      <section className="relative  pb-20 overflow-hidden">
-        {/* Background overlay */}
-        <div className="absolute inset-0 bg-black/40" />
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2070&auto=format&fit=crop')",
-          }}
-        />
+      {featuredEvents && featuredEvents.length > 0 && (
+        <section className="relative  pb-20 overflow-hidden">
+          {/* Background overlay */}
+          <div className="absolute inset-0 bg-black/40" />
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-30"
+            style={{
+              backgroundImage:
+                "url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2070&auto=format&fit=crop')",
+            }}
+          />
 
-        <div className="relative max-w-7xl mx-auto px-4 flex flex-col">
-          <AnimatedDividerBar color="bg-white" className="mb-8 mx-auto" />
+          <div className="relative max-w-7xl mx-auto px-4 flex flex-col">
+            <AnimatedDividerBar color="bg-white" className="mb-8 mx-auto" />
 
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold text-white text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Pacotes Especiais
-          </motion.h2>
-
-          {/* Custom Navigation Arrows */}
-          <div className="flex justify-between items-center mb-8">
-            <button
-              onClick={() => api?.scrollPrev()}
-              className="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors"
+            <motion.h2
+              className="text-4xl md:text-5xl font-bold text-white text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
+              Pacotes Especiais
+            </motion.h2>
 
-            <button
-              onClick={() => api?.scrollNext()}
-              className="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          </div>
-
-          <Carousel setApi={setApi} className="w-full" opts={{ align: 'center', loop: true }}>
-            <CarouselContent className="-ml-8">
-              {touristPackages.map((pkg, index) => (
-                <CarouselItem key={pkg.id} className="pl-8 md:basis-1/2 lg:basis-1/3">
-                  <TouristPackageCard package={pkg} isActive={Math.abs(index - (current - 1)) <= 1} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-
-          {/* Dots Navigation */}
-          <div className="flex justify-center mt-8 gap-2">
-            {touristPackages.map((_, index) => (
+            {/* Custom Navigation Arrows */}
+            <div className="flex justify-between items-center mb-8">
               <button
-                key={index}
-                onClick={() => api?.scrollTo(index)}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === current ? 'w-8 bg-white' : 'w-2 bg-white/50'
-                }`}
-              />
-            ))}
+                onClick={() => api?.scrollPrev()}
+                className="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+
+              <button
+                onClick={() => api?.scrollNext()}
+                className="bg-white/20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-white/30 transition-colors"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
+
+            <Carousel setApi={setApi} className="w-full" opts={{ align: 'center', loop: true }}>
+              <CarouselContent className="-ml-8">
+                {featuredEvents.map((site, index) => (
+                  <CarouselItem key={site.id} className="pl-6 md:basis-1/2 lg:basis-1/3">
+                    <div className="h-full">
+                      <TouristSiteCard
+                        event={site}
+                        isActive={Math.abs(index - (current - 1)) <= 1}
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+
+            {/* Dots Navigation */}
+            <div className="flex justify-center mt-8 gap-2">
+              {featuredEvents.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => api?.scrollTo(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === current ? 'w-8 bg-white' : 'w-2 bg-white/50'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-      <section className="py-20 bg-gray-50">
+        </section>
+      )}
+      <section className="pb-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <AnimatedDividerBar color="bg-blue-600" className="mb-8" />

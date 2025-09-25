@@ -72,7 +72,6 @@ export interface Config {
     events: Event;
     'page-headers': PageHeader;
     'page-sections': PageSection;
-    'tourist-packages': TouristPackage;
     vision: Vision;
     'call-to-actions': CallToAction;
     'payload-locked-documents': PayloadLockedDocument;
@@ -86,7 +85,6 @@ export interface Config {
     events: EventsSelect<false> | EventsSelect<true>;
     'page-headers': PageHeadersSelect<false> | PageHeadersSelect<true>;
     'page-sections': PageSectionsSelect<false> | PageSectionsSelect<true>;
-    'tourist-packages': TouristPackagesSelect<false> | TouristPackagesSelect<true>;
     vision: VisionSelect<false> | VisionSelect<true>;
     'call-to-actions': CallToActionsSelect<false> | CallToActionsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -156,7 +154,6 @@ export interface User {
 export interface Media {
   id: string;
   alt: string;
-  caption?: string | null;
   type?: ('image' | 'document' | 'video' | 'audio') | null;
   _key?: string | null;
   updatedAt: string;
@@ -212,6 +209,10 @@ export interface Event {
   link: string;
   image: string | Media;
   status: 'draft' | 'published';
+  /**
+   * Check to highlight this event as a featured item.
+   */
+  isFeatured?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -369,42 +370,6 @@ export interface PageSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "tourist-packages".
- */
-export interface TouristPackage {
-  id: string;
-  name: string;
-  description: string;
-  /**
-   * Enter the price of the package in USD.
-   */
-  price: number;
-  /**
-   * E.g., "3 days / 2 nights" or "1 week".
-   */
-  duration: string;
-  locations: {
-    /**
-     * E.g., Luanda, Namibe, Benguela, etc.
-     */
-    location: string;
-    id?: string | null;
-  }[];
-  image: string | Media;
-  /**
-   * Optional detailed itinerary of the package.
-   */
-  itinerary?: string | null;
-  /**
-   * Check to mark this package as featured for prominent display.
-   */
-  featured?: boolean | null;
-  status: 'draft' | 'published';
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "vision".
  */
 export interface Vision {
@@ -470,10 +435,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'page-sections';
         value: string | PageSection;
-      } | null)
-    | ({
-        relationTo: 'tourist-packages';
-        value: string | TouristPackage;
       } | null)
     | ({
         relationTo: 'vision';
@@ -553,7 +514,6 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
-  caption?: T;
   type?: T;
   _key?: T;
   updatedAt?: T;
@@ -616,6 +576,7 @@ export interface EventsSelect<T extends boolean = true> {
   link?: T;
   image?: T;
   status?: T;
+  isFeatured?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -710,28 +671,6 @@ export interface PageSectionsSelect<T extends boolean = true> {
         maxEvents?: T;
       };
   isActive?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "tourist-packages_select".
- */
-export interface TouristPackagesSelect<T extends boolean = true> {
-  name?: T;
-  description?: T;
-  price?: T;
-  duration?: T;
-  locations?:
-    | T
-    | {
-        location?: T;
-        id?: T;
-      };
-  image?: T;
-  itinerary?: T;
-  featured?: T;
-  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }

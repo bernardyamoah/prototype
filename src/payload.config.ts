@@ -12,7 +12,7 @@ import Events from './collections/Events'
 import { Media } from './collections/Media'
 import PageHeaders from './collections/PageHeaders'
 import PageSections from './collections/PageSections'
-import TouristPackages from './collections/TouristPackage'
+
 import { Users } from './collections/Users'
 import Vision from './collections/Vision'
 
@@ -32,7 +32,7 @@ export default buildConfig({
     Events,
     PageHeaders,
     PageSections,
-    TouristPackages,
+
     Vision,
     CallToActions,
   ],

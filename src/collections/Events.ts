@@ -61,6 +61,16 @@ export const Events: CollectionConfig = {
         position: 'sidebar', // Place status in the admin sidebar for easy access
       },
     },
+    {
+      name: 'isFeatured',
+      type: 'checkbox',
+      label: 'Featured Event',
+      defaultValue: false, 
+      admin: {
+        position: 'sidebar', // Place in sidebar for quick toggling
+        description: 'Check to highlight this event as a featured item.',
+      },
+    },
   ],
   timestamps: true,
 }

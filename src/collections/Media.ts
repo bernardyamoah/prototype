@@ -1,6 +1,4 @@
-import type { CollectionConfig } from 'payload';
-
-
+import type { CollectionConfig } from 'payload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -16,10 +14,7 @@ export const Media: CollectionConfig = {
       type: 'text',
       required: true,
     },
-    {
-      name: 'caption',
-      type: 'text',
-    },
+
     {
       name: 'type',
       type: 'select',
@@ -72,14 +67,14 @@ export const Media: CollectionConfig = {
       ({ data }: { data: { alt?: string; filename?: string } }) => {
         if (!data.alt && data.filename) {
           // Auto-generate alt text from filename if not provided
-          const filename = data.filename.split('.')[0];
+          const filename = data.filename.split('.')[0]
           data.alt = filename
             .split(/[-_]/)
             .map((word: string) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
+            .join(' ')
         }
-        return data;
+        return data
       },
     ],
   },
-};
+}
