@@ -131,7 +131,7 @@ export function Navigation() {
               {/* Logo - Always visible */}
               <Link href="/" className="flex flex-col text-center">
                 <Image
-                  src="/visit-angola-logo.svg"
+                  src="/angola-logo.svg"
                   alt="Logo"
                   width={200}
                   height={200}
@@ -188,7 +188,7 @@ export function Navigation() {
                   <SheetHeader className="p-6 pb-4 bg-gradient-to-r from-white via-orange-50/30 to-white border-b">
                     <SheetTitle className="flex items-center space-x-3">
                       <Image
-                        src="/visit-angola-logo.svg"
+                        src="/angola-logo.svg"
                         alt="Visit Angola Logo"
                         width={148}
                         height={148}

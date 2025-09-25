@@ -19,14 +19,13 @@ const governmentStructure = [
     title: 'Presidente da República',
     description: 'Chefe de Estado e do Executivo, eleito por sufrágio universal direto.',
     icon: Building2,
-    image:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=face',
+    image: '/angolan-president.jpg',
   },
   {
     title: 'Assembleia Nacional',
     description: 'Órgão legislativo unicameral com 220 deputados eleitos por 5 anos.',
     icon: Users,
-    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop',
+    image: '/assemblia.jpg',
   },
   {
     title: 'Tribunal Supremo',
