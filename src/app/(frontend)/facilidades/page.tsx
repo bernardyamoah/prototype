@@ -2,7 +2,7 @@ import { HeroSection } from '@/components/hero-section'
 
 import { getEvents } from '@/lib/get-events'
 import { getHeroSection } from '@/lib/get-header-section'
-import { getTouristPackages } from '@/lib/get-tourist-package'
+
 import Facilidades from './_components/facilidades'
 
 type Params = Promise<{ slug: string }>
@@ -16,7 +16,7 @@ export default async function FacilidadesPage(props: {
   const locale = (await searchParams).locale || 'pt'
   const featuredEvents = await getEvents({ isFeatured: true })
   const heroSection = await getHeroSection({ locale, page: 'facilidades' })
-  const touristPackages = await getTouristPackages()
+
   return (
     <div className="min-h-screen mx-auto">
       <HeroSection
