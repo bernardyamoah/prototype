@@ -28,12 +28,13 @@ export const PageSections: CollectionConfig = {
         { label: 'Text Content', value: 'text' },
         { label: 'Image Gallery', value: 'gallery' },
         { label: 'Feature List', value: 'features' },
-        { label: 'Statistics', value: 'stats' },
+        { label: 'Statistics Carousel', value: 'stats' },
         { label: 'Testimonials', value: 'testimonials' },
         { label: 'FAQ', value: 'faq' },
-        { label: 'Government Cards', value: 'government-cards' },
-        { label: 'Investment Cards', value: 'investment-cards' },
+        { label: 'Information Carousel', value: 'government-cards' },
+        { label: 'Investment Carousel', value: 'investment-cards' },
         { label: 'Events Carousel', value: 'events-carousel' },
+        { label: 'Image Carousel', value: 'image-carousel' },
         { label: 'Custom Component', value: 'custom' },
       ],
     },
@@ -114,9 +115,11 @@ export const PageSections: CollectionConfig = {
         },
         {
           name: 'icon',
-          type: 'text',
+          type: 'select',
+          required: true,
+          options: iconOptions,
           admin: {
-            description: 'Icon name (e.g., "map", "calendar", "users")',
+            description: 'Select a Lucide icon for the government card.',
           },
         },
         {
@@ -147,7 +150,12 @@ export const PageSections: CollectionConfig = {
         },
         {
           name: 'icon',
-          type: 'text',
+          type: 'select',
+          required: true,
+          options: iconOptions,
+          admin: {
+            description: 'Select a Lucide icon for the government card.',
+          },
         },
       ],
     },
@@ -260,10 +268,39 @@ export const PageSections: CollectionConfig = {
         },
         {
           name: 'icon',
-          type: 'text',
+          type: 'select',
+          required: true,
+          options: iconOptions,
           admin: {
-            description: 'Emoji or icon character',
+            description: 'Select a Lucide icon for the government card.',
           },
+        },
+      ],
+    },
+    {
+      name: 'items',
+      type: 'array',
+      admin: {
+        condition: (data, siblingData) => siblingData?.type === 'image-carousel',
+      },
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
         },
       ],
     },

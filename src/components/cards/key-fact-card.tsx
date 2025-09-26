@@ -1,10 +1,11 @@
 'use client'
+import { Icon } from '@iconify/react'
 import { motion } from 'motion/react'
 
 interface KeyFactItem {
   label: string
   value: string
-  icon: React.ComponentType<{ className?: string }>
+  icon: string
   image?: string
 }
 
@@ -20,7 +21,7 @@ const KeyFactCard = ({ item, index }: { item: KeyFactItem; index: number }) => {
       viewport={{ once: true }}
       className={`${bgColors[index % 2]} ${textColors[index % 2]} w-full rounded-2xl p-8 h-full flex flex-col justify-between`}
     >
-      <item.icon className="text-4xl mb-4" />
+      <Icon icon={item.icon} className="text-4xl mb-4" />
       <h3 className="font-semibold">{item.label}</h3>
       <p className="">{item.value}</p>
     </motion.div>

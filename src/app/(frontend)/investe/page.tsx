@@ -1,7 +1,9 @@
 import { HeroSection } from '@/components/hero-section'
 import { getHeroSection } from '@/lib/get-header-section'
+import { getPageSections } from '@/lib/get-section'
+import { PageSection } from '@/payload-types'
+import GuiDasIndustriasCarousel from '../../../components/sections/investment-carousel-section'
 import BusinessCreationAngolaCarousel from './_components/business-creation-angola'
-import GuiDasIndustriasCarousel from './_components/guia-das-industrias'
 import PorqueAngolaCarousel from './_components/porque-angola'
 
 type Params = Promise<{ slug: string }>
@@ -11,6 +13,13 @@ export default async function InvestePage(props: { params: Params; searchParams:
   const searchParams = await props.searchParams
   const locale = (await searchParams).locale || 'pt'
   const heroSection = await getHeroSection({ locale, page: 'investe' })
+  const sections: PageSection[] = await getPageSections({ locale, page: 'investe' })
+  const investmentSector: PageSection[] = await getPageSections({
+    locale,
+    page: 'investe',
+    type: 'investment-cards',
+  })
+
   return (
     <div className="min-h-screen ">
       <HeroSection
@@ -29,9 +38,11 @@ export default async function InvestePage(props: { params: Params; searchParams:
       <div className="bg-[#f7f0df] pb-20 px-4">
         <BusinessCreationAngolaCarousel />
       </div>
-      <div className="bg-[#fefefe] pb-20 px-4">
-        <GuiDasIndustriasCarousel />
-      </div>
+      {sections.length > 0 && (
+        <div className="bg-[#fefefe] pb-20 px-4">
+          <GuiDasIndustriasCarousel section={investmentSector[0]} />
+        </div>
+      )}
     </div>
   )
 }

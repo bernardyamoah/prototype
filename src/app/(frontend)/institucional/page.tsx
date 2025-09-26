@@ -1,10 +1,9 @@
 import { HeroSection } from '@/components/hero-section'
+import SectionRenderer from '@/components/sections/universal-section-render'
 import { getHeroSection } from '@/lib/get-header-section'
 import { getPageSections } from '@/lib/get-section'
 import { getVisions } from '@/lib/get-vision'
 import { PageSection } from '@/payload-types'
-import SectionStructureCarousel from '../_components/section-carousel'
-import PatrimonioCulturalCarousel from './_components/patrimonio-cultural'
 import VisionSection from './_components/vision'
 type Params = Promise<{ slug: string }>
 type SearchParams = Promise<{ [key: string]: 'pt' | 'en' | undefined }>
@@ -17,10 +16,23 @@ export default async function InstitucionalPage(props: {
   const locale = (await searchParams).locale || 'pt'
   const heroSection = await getHeroSection({ locale, page: 'institucional' })
   const vision = await getVisions()
-  const sections: PageSection[] = await getPageSections({
+  let sections: PageSection[] = await getPageSections({
     locale,
     page: 'institucional',
   })
+  const culturalSectionIndex = sections.findIndex(
+    (section) =>
+      section.type === 'image-carousel' &&
+      (locale === 'pt'
+        ? section.title === 'Patrimônio Cultural'
+        : section.title === 'Cultural Highlights'),
+  )
+
+  if (culturalSectionIndex !== -1) {
+    const culturalSection = sections.splice(culturalSectionIndex, 1)[0]
+    sections = [...sections, culturalSection]
+  }
+  // const sections = await getPageSections({ locale, page: 'institucional', type: 'stats' })
   return (
     <div className="min-h-screen">
       <HeroSection
@@ -33,50 +45,10 @@ export default async function InstitucionalPage(props: {
         }
       />
 
-      {/* Government Structure Section */}
-      {/* <GovernmentStructureCarousel /> */}
       {sections.map((section) => (
-        <div key={section.title} className="bg-[#fefefe] pb-20 px-4">
-          <SectionStructureCarousel section={section} />
-        </div>
+        <SectionRenderer key={section.id} section={section} />
       ))}
-      {/* Cultural Heritage Section */}
 
-      <PatrimonioCulturalCarousel />
-
-      {/* Vision Section */}
-      {/* <section className="py-20 bg-gradient-to-br from-orange-500 to-red-600 text-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <Heart className="w-16 h-16 mx-auto mb-6 text-yellow-300" />
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Angola 2050</h2>
-            <p className="text-xl leading-relaxed mb-8">
-              Construindo um futuro próspero, sustentável e inclusivo para todos os angolanos. Um
-              país moderno que preserva suas tradições e abraça a inovação.
-            </p>
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
-              <div className="text-center">
-                <div className="text-3xl font-bold mb-2">2030</div>
-                <div className="text-yellow-200">Diversificação Econômica</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold mb-2">2040</div>
-                <div className="text-yellow-200">Sustentabilidade Ambiental</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold mb-2">2050</div>
-                <div className="text-yellow-200">Sociedade do Conhecimento</div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section> */}
       <VisionSection vision={vision} />
     </div>
   )

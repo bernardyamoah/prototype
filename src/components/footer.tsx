@@ -26,7 +26,7 @@ export function Footer() {
               alt="Logo"
               width={400}
               height={400}
-              className="h-40 w-fit pointer-events-none object-cover"
+              className="h-20 w-fit pointer-events-none object-cover"
             />
 
             <p className="text-sm opacity-75">

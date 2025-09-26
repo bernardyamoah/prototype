@@ -8,45 +8,45 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
+import { PageSection } from '@/payload-types'
 import Autoplay from 'embla-carousel-autoplay'
-import { Award, Calendar, Flag, Globe, MapPin, Users } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 
-const keyFacts = [
-  {
-    label: 'Independência',
-    value: '11 de Novembro de 1975',
-    icon: Calendar,
-  },
-  {
-    label: 'Capital',
-    value: 'Luanda',
-    icon: MapPin,
-  },
-  {
-    label: 'População',
-    value: '35+ milhões',
-    icon: Users,
-  },
-  {
-    label: 'Área',
-    value: '1.246.700 km²',
-    icon: Globe,
-  },
-  {
-    label: 'Língua Oficial',
-    value: 'Português',
-    icon: Flag,
-  },
-  {
-    label: 'Moeda',
-    value: 'Kwanza (AOA)',
-    icon: Award,
-  },
-]
+// const keyFacts = [
+//   {
+//     label: 'Independência',
+//     value: '11 de Novembro de 1975',
+//     icon: Calendar,
+//   },
+//   {
+//     label: 'Capital',
+//     value: 'Luanda',
+//     icon: MapPin,
+//   },
+//   {
+//     label: 'População',
+//     value: '35+ milhões',
+//     icon: Users,
+//   },
+//   {
+//     label: 'Área',
+//     value: '1.246.700 km²',
+//     icon: Globe,
+//   },
+//   {
+//     label: 'Língua Oficial',
+//     value: 'Português',
+//     icon: Flag,
+//   },
+//   {
+//     label: 'Moeda',
+//     value: 'Kwanza (AOA)',
+//     icon: Award,
+//   },
+// ]
 
-const KeyFactsCarousel = () => {
+const KeyFactsCarousel = ({ keyFacts }: { keyFacts: PageSection['stats'] }) => {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
   const [_, setCount] = useState(0)
@@ -88,7 +88,7 @@ const KeyFactsCarousel = () => {
           }}
         >
           <CarouselContent className="-ml-6 h-full w-full p-3">
-            {keyFacts.map((fact, index) => (
+            {keyFacts?.map((fact, index) => (
               <CarouselItem key={fact.label} className="pl-6 sm:basis-1/3 md:basis-1/4 ">
                 <KeyFactCard item={fact} index={index} />
               </CarouselItem>
@@ -104,7 +104,7 @@ const KeyFactsCarousel = () => {
 
       {/* Dots Navigation */}
       <div className="flex justify-center mt-8 gap-2">
-        {keyFacts.map((_, index) => (
+        {keyFacts?.map((_, index) => (
           <motion.button
             key={index}
             onClick={() => goToSlide(index)}

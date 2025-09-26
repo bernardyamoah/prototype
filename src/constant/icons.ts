@@ -8,6 +8,9 @@ export const iconOptions = [
   { label: 'City', value: 'lucide:city' },
   { label: 'Skyscraper', value: 'heroicons:office-building' },
   { label: 'Monument', value: 'mdi:monument' },
+  { label: 'Bridge', value: 'lucide:bridge' },
+  { label: 'Tower', value: 'mdi:tower' },
+  { label: 'House', value: 'fa:house' },
 
   // People & Community
   { label: 'Users', value: 'lucide:users' },
@@ -16,6 +19,9 @@ export const iconOptions = [
   { label: 'Family', value: 'lucide:family' },
   { label: 'Crowd', value: 'mdi:crowd' },
   { label: 'People', value: 'heroicons:users' },
+  { label: 'Community', value: 'lucide:hand-helping' },
+  { label: 'Person Circle', value: 'fa:user-circle' },
+  { label: 'Team', value: 'mdi:account-group' },
 
   // Government & Justice
   { label: 'Award', value: 'lucide:award' },
@@ -25,6 +31,9 @@ export const iconOptions = [
   { label: 'Justice Scale', value: 'fa:balance-scale' },
   { label: 'Law', value: 'mdi:law' },
   { label: 'Court', value: 'heroicons:courthouse' },
+  { label: 'Flag', value: 'lucide:flag' },
+  { label: 'Vote', value: 'mdi:vote' },
+  { label: 'Government', value: 'fa:landmark' },
 
   // Maps & Locations
   { label: 'Map Pin', value: 'lucide:map-pin' },
@@ -32,6 +41,9 @@ export const iconOptions = [
   { label: 'Globe', value: 'lucide:globe' },
   { label: 'Location', value: 'mdi:map-marker' },
   { label: 'Compass', value: 'heroicons:compass' },
+  { label: 'Navigation', value: 'lucide:navigation' },
+  { label: 'Pin', value: 'fa:map-pin' },
+  { label: 'World', value: 'mdi:earth' },
 
   // Business & Economy
   { label: 'Briefcase', value: 'lucide:briefcase' },
@@ -40,6 +52,9 @@ export const iconOptions = [
   { label: 'Chart', value: 'lucide:bar-chart-2' },
   { label: 'Bank', value: 'mdi:bank' },
   { label: 'Money Bag', value: 'fa:money-bill-alt' },
+  { label: 'Wallet', value: 'lucide:wallet' },
+  { label: 'Trending Up', value: 'lucide:trending-up' },
+  { label: 'Store', value: 'mdi:store' },
 
   // Landmarks & Nature
   { label: 'Landmark', value: 'lucide:landmark' },
@@ -48,6 +63,9 @@ export const iconOptions = [
   { label: 'Water', value: 'lucide:water-wave' },
   { label: 'Sun', value: 'mdi:weather-sunny' },
   { label: 'Beach', value: 'heroicons:palm-tree' },
+  { label: 'River', value: 'mdi:water' },
+  { label: 'Forest', value: 'fa:tree' },
+  { label: 'Park', value: 'lucide:park' },
 
   // Symbols & Miscellaneous
   { label: 'Star', value: 'lucide:star' },
@@ -56,4 +74,32 @@ export const iconOptions = [
   { label: 'Alert', value: 'lucide:alert-triangle' },
   { label: 'Gear', value: 'mdi:cog' },
   { label: 'Bell', value: 'heroicons:bell' },
+  { label: 'Calendar', value: 'lucide:calendar' },
+  { label: 'Clock', value: 'lucide:clock' },
+  { label: 'Book', value: 'lucide:book' },
+
+  // Culture & Lifestyle
+  { label: 'Music', value: 'lucide:music' },
+  { label: 'Camera', value: 'lucide:camera' },
+  { label: 'Film', value: 'mdi:filmstrip' },
+  { label: 'Dance', value: 'fa:shoe-prints' },
+  { label: 'Art', value: 'lucide:palette' },
+
+  // Economy & Industry
+  { label: 'Agricultura (Leaf)', value: 'lucide:leaf' },
+  { label: 'Energia', value: 'lucide:zap' },
+  { label: 'Imóveis', value: 'lucide:home' },
+  { label: 'Turismo', value: 'lucide:globe' },
+  { label: 'Tecnologia', value: 'lucide:building-2' },
+  { label: 'Indústria', value: 'lucide:factory' },
+  { label: 'Mining', value: 'mdi:pickaxe' },
+  { label: 'Oil', value: 'fa:oil-can' },
+  { label: 'Construction', value: 'lucide:hammer' },
+
+  // Communication & Technology
+  { label: 'Phone', value: 'lucide:phone' },
+  { label: 'Mail', value: 'lucide:mail' },
+  { label: 'Laptop', value: 'mdi:laptop' },
+  { label: 'Wifi', value: 'lucide:wifi' },
+  { label: 'Database', value: 'fa:database' },
 ]
