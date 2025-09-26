@@ -135,18 +135,18 @@ export function Navigation() {
               {/* Desktop Navigation Right */}
               <div className="hidden lg:flex items-center space-x-8">
                 <Link
-                  href={'/informações'}
+                  href={'/information'}
                   className={`text-xs font-medium uppercase transition-colors border-b-2 ${
                     pathname === '/information'
                       ? 'text-brand-orange border-brand-orange'
                       : 'text-gray-800 hover:text-brand-orange border-transparent hover:border-brand-orange'
                   }`}
                 >
-                  informações
+                  INFORMAÇÕES
                 </Link>
                 <Link
                   href={'/contacto'}
-                  className={`text-xs uppercase font-medium transition-colors border-b-2 ${
+                  className={`text-xs font-medium transition-colors border-b-2 ${
                     pathname === '/contacto'
                       ? 'text-brand-orange border-brand-orange'
                       : 'text-gray-800 hover:text-brand-orange border-transparent hover:border-brand-orange'
