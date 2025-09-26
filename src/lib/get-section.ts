@@ -18,7 +18,6 @@ interface GetPageSectionsParams {
 export async function getPageSections({
   locale = 'pt',
   page,
- 
   type,
   title,
 }: GetPageSectionsParams = {}): Promise<PageSection[]> {
@@ -42,7 +41,7 @@ export async function getPageSections({
     where: {
       isActive: { equals: true },
     },
-
+    sort: 'order',
   }
 
   // Add filters

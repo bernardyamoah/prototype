@@ -261,8 +261,13 @@ export interface PageSection {
     | 'investment-cards'
     | 'events-carousel'
     | 'image-carousel'
+    | 'highlight-carousel'
     | 'custom';
   page: 'home' | 'explore' | 'facilidades' | 'institucional' | 'investe' | 'information';
+  /**
+   * Order of the section (higher numbers appear later)
+   */
+  order?: number | null;
   heading?: string | null;
   subheading?: string | null;
   content?: {
@@ -678,6 +683,104 @@ export interface PageSection {
     | {
         title: string;
         description: string;
+        link?: string | null;
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  highlights?:
+    | {
+        title: string;
+        description: string;
+        link?: string | null;
+        /**
+         * Select a Lucide icon for the government card.
+         */
+        icon?:
+          | (
+              | 'lucide:building'
+              | 'lucide:building-2'
+              | 'lucide:home'
+              | 'lucide:apartment'
+              | 'lucide:castle'
+              | 'lucide:city'
+              | 'heroicons:office-building'
+              | 'mdi:monument'
+              | 'lucide:bridge'
+              | 'mdi:tower'
+              | 'fa:house'
+              | 'lucide:users'
+              | 'lucide:user'
+              | 'lucide:users-2'
+              | 'lucide:family'
+              | 'mdi:crowd'
+              | 'heroicons:users'
+              | 'lucide:hand-helping'
+              | 'fa:user-circle'
+              | 'mdi:account-group'
+              | 'lucide:award'
+              | 'lucide:shield'
+              | 'lucide:gavel'
+              | 'lucide:scale-3'
+              | 'fa:balance-scale'
+              | 'mdi:law'
+              | 'heroicons:courthouse'
+              | 'lucide:flag'
+              | 'mdi:vote'
+              | 'fa:landmark'
+              | 'lucide:map-pin'
+              | 'lucide:map'
+              | 'lucide:globe'
+              | 'mdi:map-marker'
+              | 'heroicons:compass'
+              | 'lucide:navigation'
+              | 'fa:map-pin'
+              | 'mdi:earth'
+              | 'lucide:briefcase'
+              | 'lucide:dollar-sign'
+              | 'lucide:coins'
+              | 'lucide:bar-chart-2'
+              | 'mdi:bank'
+              | 'fa:money-bill-alt'
+              | 'lucide:wallet'
+              | 'lucide:trending-up'
+              | 'mdi:store'
+              | 'lucide:landmark'
+              | 'lucide:mountain'
+              | 'lucide:tree'
+              | 'lucide:water-wave'
+              | 'mdi:weather-sunny'
+              | 'heroicons:palm-tree'
+              | 'mdi:water'
+              | 'fa:tree'
+              | 'lucide:park'
+              | 'lucide:star'
+              | 'lucide:heart'
+              | 'lucide:check'
+              | 'lucide:alert-triangle'
+              | 'mdi:cog'
+              | 'heroicons:bell'
+              | 'lucide:calendar'
+              | 'lucide:clock'
+              | 'lucide:book'
+              | 'lucide:music'
+              | 'lucide:camera'
+              | 'mdi:filmstrip'
+              | 'fa:shoe-prints'
+              | 'lucide:palette'
+              | 'lucide:leaf'
+              | 'lucide:zap'
+              | 'lucide:factory'
+              | 'mdi:pickaxe'
+              | 'fa:oil-can'
+              | 'lucide:hammer'
+              | 'lucide:phone'
+              | 'lucide:mail'
+              | 'mdi:laptop'
+              | 'lucide:wifi'
+              | 'fa:database'
+            )
+          | null;
         image: string | Media;
         id?: string | null;
       }[]
@@ -949,6 +1052,7 @@ export interface PageSectionsSelect<T extends boolean = true> {
   title?: T;
   type?: T;
   page?: T;
+  order?: T;
   heading?: T;
   subheading?: T;
   content?: T;
@@ -1015,6 +1119,17 @@ export interface PageSectionsSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
+        link?: T;
+        image?: T;
+        id?: T;
+      };
+  highlights?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        link?: T;
+        icon?: T;
         image?: T;
         id?: T;
       };

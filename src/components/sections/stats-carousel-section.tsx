@@ -18,7 +18,9 @@ export default function StatsCarouselSection({ section }: { section: PageSection
         >
           <AnimatedDividerBar color="bg-[#2356a3]" maxHeight={70} />
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">{section.title}</h2>
-          <p className="text-lg text-gray-600 leading-relaxed">{section.subheading}</p>
+          <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+            {section.subheading}
+          </p>
         </motion.div>
 
         {/* Key Facts Carousel */}

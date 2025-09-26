@@ -16,22 +16,11 @@ export default async function InstitucionalPage(props: {
   const locale = (await searchParams).locale || 'pt'
   const heroSection = await getHeroSection({ locale, page: 'institucional' })
   const vision = await getVisions()
-  let sections: PageSection[] = await getPageSections({
+  const sections: PageSection[] = await getPageSections({
     locale,
     page: 'institucional',
   })
-  const culturalSectionIndex = sections.findIndex(
-    (section) =>
-      section.type === 'image-carousel' &&
-      (locale === 'pt'
-        ? section.title === 'Patrimônio Cultural'
-        : section.title === 'Cultural Highlights'),
-  )
 
-  if (culturalSectionIndex !== -1) {
-    const culturalSection = sections.splice(culturalSectionIndex, 1)[0]
-    sections = [...sections, culturalSection]
-  }
   // const sections = await getPageSections({ locale, page: 'institucional', type: 'stats' })
   return (
     <div className="min-h-screen">

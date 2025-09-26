@@ -5,7 +5,7 @@ export const PageSections: CollectionConfig = {
   slug: 'page-sections',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'type', 'page', 'isActive', 'updatedAt'],
+    defaultColumns: ['title', 'type', 'page', 'order', 'isActive', 'updatedAt'],
   },
   access: {
     read: () => true,
@@ -35,6 +35,7 @@ export const PageSections: CollectionConfig = {
         { label: 'Investment Carousel', value: 'investment-cards' },
         { label: 'Events Carousel', value: 'events-carousel' },
         { label: 'Image Carousel', value: 'image-carousel' },
+        { label: 'Highlight Carousel', value: 'highlight-carousel' },
         { label: 'Custom Component', value: 'custom' },
       ],
     },
@@ -50,6 +51,15 @@ export const PageSections: CollectionConfig = {
         { label: 'Investe', value: 'investe' },
         { label: 'Informações', value: 'information' },
       ],
+    },
+    {
+      name: 'order',
+      type: 'number',
+      defaultValue: 0,
+      admin: {
+        description: 'Order of the section (higher numbers appear later)',
+        position: 'sidebar',
+      },
     },
     {
       name: 'heading',
@@ -295,6 +305,49 @@ export const PageSections: CollectionConfig = {
           type: 'textarea',
           required: true,
           localized: true,
+        },
+        {
+          name: 'link',
+          type: 'text',
+        },
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          required: true,
+        },
+      ],
+    },
+    {
+      name: 'highlights',
+      type: 'array',
+      admin: {
+        condition: (data, siblingData) => siblingData?.type === 'highlight-carousel',
+      },
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          required: true,
+          localized: true,
+        },
+        {
+          name: 'link',
+          type: 'text',
+        },
+        {
+          name: 'icon',
+          type: 'select',
+          options: iconOptions,
+          admin: {
+            description: 'Select a Lucide icon for the government card.',
+          },
         },
         {
           name: 'image',
