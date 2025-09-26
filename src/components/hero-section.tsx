@@ -94,7 +94,7 @@ export function HeroSection({
 
   return (
     <motion.section
-      className={`relative min-h-[100dvh] h-full rounded-b-[1.5rem] overflow-hidden flex items-center justify-center ${className}`}
+      className={`relative min-h-[100dvh] h-full lg:rounded-b-[1.5rem] overflow-hidden flex items-center justify-center ${className}`}
       initial="hidden"
       animate={isLoaded ? 'visible' : 'hidden'}
       variants={containerVariants}
@@ -123,11 +123,11 @@ export function HeroSection({
         </motion.p>
 
         {/* Animated Title with Staggered Words */}
-        <div className="text-6xl md:text-[171px] md:mt-3 font-bold mb-8 text-balance">
+        <div className="text-5xl sm:text-6xl md:text-[171px] md:mt-3 font-bold mb-8 text-balance">
           {titleWords.map((word, index) => (
             <motion.span
               key={index}
-              className={cn('inline-block mr-4 capitalize md:mr-8', textColor)}
+              className={cn('inline-block capitalize lg:mr-8', textColor)}
               variants={{
                 hidden: {
                   y: 200,
