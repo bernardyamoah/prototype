@@ -1,13 +1,14 @@
 'use client'
 import { Media } from '@/payload-types'
-import { AlertCircle, Building2 } from 'lucide-react'
+import { Icon } from '@iconify/react'
+import { AlertCircle } from 'lucide-react'
 import { motion } from 'motion/react'
 import Image from 'next/image'
 
 interface SectionStructureItem {
   title: string
   description: string
-  icon?: string | null | undefined
+  icon: string
   image: string | Media
   id?: string | null
 }
@@ -18,18 +19,7 @@ const SectionCard = ({ item, index }: { item: SectionStructureItem; index: numbe
     typeof item.image === 'string'
       ? item.image
       : item.image?.url || '/placeholder.svg?height=300&width=400&text=No+Image'
-  // Default to Building2 if no icon is provided
-  const IconComponent = item.icon ? dynamicIcon(item.icon) : Building2
-
-  // Function to map string icon names to Lucide icons (extend as needed)
-  function dynamicIcon(iconName: string) {
-    const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
-      building: Building2,
-      // Add more mappings for other icons as needed
-    }
-    return iconMap[iconName] || Building2
-  }
-
+  if (!item) return null
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -38,16 +28,16 @@ const SectionCard = ({ item, index }: { item: SectionStructureItem; index: numbe
       viewport={{ once: true }}
       className="bg-white rounded-xl overflow-hidden shadow hover:shadow-lg transition-shadow group h-full"
     >
-      <div className="relative h-52 overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={imageSrc}
           alt={item.title || 'Section Structure'}
           width={400}
           height={300}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover object-top  group-hover:scale-105 transition-transform duration-300"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-        {/* <IconComponent className="absolute bottom-4 left-4 w-8 h-8 text-white" /> */}
+        <Icon icon={item.icon} className="absolute bottom-4 left-4 w-8 h-8 text-white" />
       </div>
       <div className="p-6">
         <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title || 'Untitled'}</h3>

@@ -1,3 +1,4 @@
+import { iconOptions } from '@/constant/icons'
 import type { CollectionConfig } from 'payload'
 
 export const PageSections: CollectionConfig = {
@@ -225,22 +226,7 @@ export const PageSections: CollectionConfig = {
           name: 'icon',
           type: 'select',
           required: true,
-          options: [
-            { label: 'Building 2', value: 'building-2' },
-            { label: 'Building 2 (Lucide)', value: 'lucide:building-2' },
-            { label: 'Users', value: 'lucide:users' },
-            { label: 'Award', value: 'lucide:award' },
-            { label: 'Map Pin', value: 'lucide:map-pin' },
-            { label: 'Shield', value: 'lucide:shield' },
-            { label: 'Gavel', value: 'lucide:gavel' },
-            { label: 'Globe', value: 'lucide:globe' },
-            { label: 'Briefcase', value: 'lucide:briefcase' },
-            { label: 'Landmark', value: 'lucide:landmark' },
-            { label: 'Scale', value: 'lucide:scale-3' }, // Note: 'scale' might be 'scale-3' in Lucide
-            // Bonus: Mix in other collections
-            { label: 'Building Office', value: 'heroicons-building-office-2' },
-            { label: 'Justice Scale', value: 'fa:balance-scale' },
-          ],
+          options: iconOptions,
           admin: {
             description: 'Select a Lucide icon for the government card.',
           },

@@ -1,9 +1,11 @@
 import { HeroSection } from '@/components/hero-section'
 import { getHeroSection } from '@/lib/get-header-section'
-import GovernmentStructureCarousel from './_components/government-structure-carousel'
+import { getPageSections } from '@/lib/get-section'
+import { getVisions } from '@/lib/get-vision'
+import { PageSection } from '@/payload-types'
+import SectionStructureCarousel from '../_components/section-carousel'
 import PatrimonioCulturalCarousel from './_components/patrimonio-cultural'
 import VisionSection from './_components/vision'
-import { getVisions } from '@/lib/get-vision'
 type Params = Promise<{ slug: string }>
 type SearchParams = Promise<{ [key: string]: 'pt' | 'en' | undefined }>
 
@@ -15,6 +17,10 @@ export default async function InstitucionalPage(props: {
   const locale = (await searchParams).locale || 'pt'
   const heroSection = await getHeroSection({ locale, page: 'institucional' })
   const vision = await getVisions()
+  const sections: PageSection[] = await getPageSections({
+    locale,
+    page: 'institucional',
+  })
   return (
     <div className="min-h-screen">
       <HeroSection
@@ -28,8 +34,12 @@ export default async function InstitucionalPage(props: {
       />
 
       {/* Government Structure Section */}
-      <GovernmentStructureCarousel />
-
+      {/* <GovernmentStructureCarousel /> */}
+      {sections.map((section) => (
+        <div key={section.title} className="bg-[#fefefe] pb-20 px-4">
+          <SectionStructureCarousel section={section} />
+        </div>
+      ))}
       {/* Cultural Heritage Section */}
 
       <PatrimonioCulturalCarousel />

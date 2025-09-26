@@ -123,13 +123,13 @@ export function Navigation() {
                   INVESTE EM ANGOLA
                 </Link>
               </div>{' '}
-              <Link href="/" className="flex flex-col text-center">
+              <Link href="/" className="flex flex-col text-center relative h-15 w-18">
                 <Image
                   src="/angola-vertical-logo.svg"
                   alt="Logo"
                   width={200}
                   height={200}
-                  className="h-13 w-18 object-cover"
+                  className="top-1/2 -translate-y-1/2 isolate z-1 absolute h-16 lg:h-18 object-cover pointer-events-none"
                 />
               </Link>
               {/* Desktop Navigation Right */}
