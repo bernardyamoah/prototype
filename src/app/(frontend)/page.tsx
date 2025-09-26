@@ -49,7 +49,11 @@ export default async function HomePage(props: { params: Params; searchParams: Se
       ))}
 
       <ActivitiesCarousel activities={featuredActivities} />
-      {events && events.length > 0 && <UniqueExperiencesInAngolaCarousel events={events} />}
+      {events && events.length > 0 && (
+        <div className="px-4 pb-20">
+          <UniqueExperiencesInAngolaCarousel events={events} />
+        </div>
+      )}
     </div>
   )
 }

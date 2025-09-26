@@ -13,11 +13,11 @@ import { useState } from 'react'
 const mainNavItems = [
   { name: 'INSTITUCIONAL', link: '/institucional' },
   { name: 'INVESTE EM ANGOLA', link: '/investe' },
-  { name: 'Informações', link: '/informações' },
-  { name: 'FALE CONNOSCO', href: '/contacto' },
+  { name: 'Informações', link: '/information' },
+  { name: 'FALE CONNOSCO', link: '/contacto' },
 ]
 
-const topNavItems = [{ name: 'SUPORTE AO TURISTA', href: '/suporte' }]
+const topNavItems = [{ name: 'SUPORTE AO TURISTA', link: '/suporte' }]
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -37,7 +37,7 @@ export function Navigation() {
     onClick?: () => void
   }) => (
     <Link
-      href={href}
+      href={href!}
       onClick={() => {
         onClick()
         setIsMenuOpen(false)
@@ -75,7 +75,7 @@ export function Navigation() {
               {topNavItems.map((item) => (
                 <Link
                   key={item.name}
-                  href={item.href}
+                  href={item.link}
                   className="hover:text-brand-yellow transition-colors"
                 >
                   {item.name}
@@ -123,7 +123,6 @@ export function Navigation() {
                   INVESTE EM ANGOLA
                 </Link>
               </div>{' '}
-            
               <Link href="/" className="flex flex-col text-center">
                 <Image
                   src="/angola-vertical-logo.svg"
@@ -137,8 +136,8 @@ export function Navigation() {
               <div className="hidden lg:flex items-center space-x-8">
                 <Link
                   href={'/informações'}
-                  className={`text-xs font-medium transition-colors border-b-2 ${
-                    pathname === '/informações'
+                  className={`text-xs font-medium uppercase transition-colors border-b-2 ${
+                    pathname === '/information'
                       ? 'text-brand-orange border-brand-orange'
                       : 'text-gray-800 hover:text-brand-orange border-transparent hover:border-brand-orange'
                   }`}
@@ -147,7 +146,7 @@ export function Navigation() {
                 </Link>
                 <Link
                   href={'/contacto'}
-                  className={`text-xs font-medium transition-colors border-b-2 ${
+                  className={`text-xs uppercase font-medium transition-colors border-b-2 ${
                     pathname === '/contacto'
                       ? 'text-brand-orange border-brand-orange'
                       : 'text-gray-800 hover:text-brand-orange border-transparent hover:border-brand-orange'
@@ -219,11 +218,11 @@ export function Navigation() {
 
                       <div className="space-y-2">
                         {topNavItems.map((item) => {
-                          const isActive = pathname === item.href
+                          const isActive = pathname === item.link
                           return (
                             <NavLink
                               key={item.name}
-                              href={item.href}
+                              href={item.link}
                               isActive={isActive}
                               className="text-sm"
                             >

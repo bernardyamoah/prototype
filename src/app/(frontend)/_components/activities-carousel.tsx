@@ -30,8 +30,8 @@ export default function ActivitiesCarousel({ activities }: { activities: any[] }
 
   if (!activities || activities.length == 0) return null
   return (
-    <section className="pb-20">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="pb-20 px-4">
+      <div className="max-w-(--breakpoint-xl) w-full mx-auto ">
         <div className="text-center mb-16">
           <AnimatedDividerBar color="bg-blue-600" className="mb-8" />
 

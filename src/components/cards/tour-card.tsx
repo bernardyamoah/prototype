@@ -9,7 +9,7 @@ const TouristSiteCard = ({ event, isActive }: { event: Event; isActive: boolean 
 
   return (
     <motion.div
-      className={`relative group rounded-2xl overflow-hidden h-[35rem] cursor-pointer `}
+      className={`relative group  overflow-hidden h-[30rem] cursor-pointer `}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       animate={{

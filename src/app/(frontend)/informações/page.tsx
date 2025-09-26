@@ -20,11 +20,11 @@ import CTA from './_compoents/cta'
 type Params = Promise<{ slug: string }>
 type SearchParams = Promise<{ [key: string]: 'pt' | 'en' | undefined }>
 
-export default async function RecursosPage(props: { params: Params; searchParams: SearchParams }) {
+export default async function InformationPage(props: { params: Params; searchParams: SearchParams }) {
   const searchParams = await props.searchParams
   const locale = (await searchParams).locale || 'pt'
-  const heroSection = await getHeroSection({ locale, page: 'recursos' })
-  const cta = await getCallToAction({ locale: 'pt', page: 'recursos' })
+  const heroSection = await getHeroSection({ locale, page: 'informações' })
+  const cta = await getCallToAction({ locale: 'pt', page: 'informações' })
   const campaigns = [
     {
       title: 'Descubra Angola 2024',
@@ -189,7 +189,7 @@ export default async function RecursosPage(props: { params: Params; searchParams
   return (
     <div className="min-h-screen mx-auto">
       <HeroSection
-        title={heroSection?.title || 'Recursos'}
+        title={heroSection?.title || 'Informações'}
         subtitle={
           heroSection?.subtitle ||
           'Informações, campanhas e ferramentas para o desenvolvimento do turismo em Angola'

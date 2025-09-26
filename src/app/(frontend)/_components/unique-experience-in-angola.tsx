@@ -70,7 +70,7 @@ const UniqueExperiencesInAngolaCarousel = ({ events }: { events: Event[] }) => {
           <CarouselContent className="-ml-6">
             {events.map((site, index) => (
               <CarouselItem key={site.id} className="pl-6 md:basis-1/2 lg:basis-1/3">
-                <div className="h-full">
+                <div className="h-full rounded-2xl overflow-hidden">
                   <TouristSiteCard event={site} isActive={Math.abs(index - (current - 1)) <= 1} />
                 </div>
               </CarouselItem>
