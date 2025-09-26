@@ -6,7 +6,7 @@ import { getPayload } from 'payload'
 
 interface GetCallToActionParams {
   locale?: 'pt' | 'en'
-  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'informações'
+  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'information'
 }
 
 /**
@@ -17,7 +17,7 @@ interface GetCallToActionParams {
 export async function getCallToAction({
   locale = 'pt',
   page,
-}: GetCallToActionParams): Promise<CallToAction > {
+}: GetCallToActionParams): Promise<CallToAction> {
   const payload = await getPayload({ config })
 
   // Validate locale

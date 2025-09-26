@@ -4,27 +4,20 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { getCallToAction } from '@/lib/get-call-to-action'
 import { getHeroSection } from '@/lib/get-header-section'
-import {
-  Calendar,
-  DollarSign,
-  Download,
-  ExternalLink,
-  FileText,
-  Globe,
-  Handshake,
-  Phone,
-  Users,
-} from 'lucide-react'
+import { Calendar, DollarSign, Download, ExternalLink, FileText, Globe, Users } from 'lucide-react'
 import CTA from './_compoents/cta'
 
 type Params = Promise<{ slug: string }>
 type SearchParams = Promise<{ [key: string]: 'pt' | 'en' | undefined }>
 
-export default async function InformationPage(props: { params: Params; searchParams: SearchParams }) {
+export default async function InformationPage(props: {
+  params: Params
+  searchParams: SearchParams
+}) {
   const searchParams = await props.searchParams
   const locale = (await searchParams).locale || 'pt'
-  const heroSection = await getHeroSection({ locale, page: 'informações' })
-  const cta = await getCallToAction({ locale: 'pt', page: 'informações' })
+  const heroSection = await getHeroSection({ locale, page: 'information' })
+  const cta = await getCallToAction({ locale: 'pt', page: 'information' })
   const campaigns = [
     {
       title: 'Descubra Angola 2024',

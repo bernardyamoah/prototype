@@ -9,7 +9,7 @@ export const CallToActions: CollectionConfig = {
     {
       name: 'page',
       type: 'select',
-      options: ['explore', 'facilidades', 'institucional', 'investe', 'informações'],
+      options: ['explore', 'facilidades', 'institucional', 'investe', 'information'],
       required: true,
     },
     { name: 'heading', type: 'text', localized: true },

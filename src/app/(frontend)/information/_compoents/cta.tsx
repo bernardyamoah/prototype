@@ -4,6 +4,9 @@ import { CallToAction } from '@/payload-types'
 import Link from 'next/link'
 
 export default function CTA({ cta }: { cta: CallToAction }) {
+  if (!cta) {
+    return null
+  }
   return (
     <section className="py-16 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 text-center">

@@ -1,12 +1,34 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background py-12">
+    <footer className="bg-background text-foreground py-12 relative overflow-hidden">
+      <Image
+        src="/angola-logo.svg"
+        alt="Logo"
+        width={400}
+        height={400}
+        className="saturate left-0 opacity-10 absolute top-0 size-124 grayscale-90 pointer-events-none"
+      />
+      <Image
+        src="/angola-logo.svg"
+        alt="Logo"
+        width={400}
+        height={400}
+        className="saturate hidden lg:block -right-45 opacity-10 absolute bottom-6 size-150 grayscale-90 pointer-events-none"
+      />
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">VISIT ANGOLA</h3>
+            <Image
+              src="/visit-angola-logo.svg"
+              alt="Logo"
+              width={400}
+              height={400}
+              className="h-40 w-fit pointer-events-none object-cover"
+            />
+
             <p className="text-sm opacity-75">
               Descubra a beleza natural e as oportunidades únicas que Angola tem para oferecer.
             </p>
@@ -82,8 +104,16 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="border-t border-background/20 mt-8 pt-8 text-center text-sm opacity-75">
-          <p>&copy; 2024 Visit Angola. Todos os direitos reservados.</p>
+
+        <div className="border-t border-background/20 mt-15 pt-8 text-center text-sm opacity-75 flex flex-col gap-16">
+          <Image
+            src="/footer-logo.svg"
+            alt="alt"
+            width={100}
+            height={100}
+            className="mx-auto w-fit h-16 object-contain pointer-events-none"
+          />
+          <p>&copy; {new Date().getFullYear()} Visit Angola. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
