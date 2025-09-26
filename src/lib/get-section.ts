@@ -30,7 +30,7 @@ export async function getPageSections({
   }
 
   // Validate page
-  const validPages = ['home', 'explore', 'facilidades', 'institucional', 'investe', 'recursos']
+  const validPages = ['home', 'explore', 'facilidades', 'institucional', 'investe', 'informações']
   if (page && !validPages.includes(page)) {
     throw new Error(`Invalid page: ${page}. Must be one of ${validPages.join(', ')}.`)
   }

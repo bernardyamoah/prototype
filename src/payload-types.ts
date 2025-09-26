@@ -226,7 +226,7 @@ export interface PageHeader {
   id: string;
   title: string;
   subtitle?: string | null;
-  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'recursos' | 'custom';
+  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'informações' | 'custom';
   backgroundImage: string | Media;
   textColor?: ('text-white' | 'text-black' | 'text-primary' | 'custom') | null;
   /**
@@ -261,7 +261,7 @@ export interface PageSection {
     | 'investment-cards'
     | 'events-carousel'
     | 'custom';
-  page: 'home' | 'explore' | 'facilidades' | 'institucional' | 'investe' | 'recursos';
+  page: 'home' | 'explore' | 'facilidades' | 'institucional' | 'investe' | 'informações';
   heading?: string | null;
   subheading?: string | null;
   content?: {
@@ -411,7 +411,7 @@ export interface Vision {
 export interface CallToAction {
   id: string;
   title: string;
-  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'recursos';
+  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'informações';
   heading?: string | null;
   subheading?: string | null;
   buttons?:

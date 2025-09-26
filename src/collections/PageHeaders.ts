@@ -30,7 +30,7 @@ export const PageHeaders: CollectionConfig = {
         { label: 'Facilidades', value: 'facilidades' },
         { label: 'Institucional', value: 'institucional' },
         { label: 'Investe', value: 'investe' },
-        { label: 'Recursos', value: 'recursos' },
+        { label: 'Informações', value: 'informações' },
         { label: 'Custom', value: 'custom' },
       ],
     },

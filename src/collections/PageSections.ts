@@ -46,7 +46,7 @@ export const PageSections: CollectionConfig = {
         { label: 'Facilidades', value: 'facilidades' },
         { label: 'Institucional', value: 'institucional' },
         { label: 'Investe', value: 'investe' },
-        { label: 'Recursos', value: 'recursos' },
+        { label: 'Informações', value: 'informações' },
       ],
     },
     {

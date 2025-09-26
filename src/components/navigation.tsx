@@ -13,15 +13,11 @@ import { useState } from 'react'
 const mainNavItems = [
   { name: 'INSTITUCIONAL', link: '/institucional' },
   { name: 'INVESTE EM ANGOLA', link: '/investe' },
-  { name: 'EXPLORE ANGOLA', link: '/' },
-  { name: 'FACILIDADES', link: '/facilidades' },
-  { name: 'RECURSOS', link: '/recursos' },
+  { name: 'Informações', link: '/informações' },
+  { name: 'FALE CONNOSCO', href: '/contacto' },
 ]
 
-const topNavItems = [
-  { name: 'FALE CONNOSCO', href: '/contacto' },
-  { name: 'SUPORTE AO TURISTA', href: '/suporte' },
-]
+const topNavItems = [{ name: 'SUPORTE AO TURISTA', href: '/suporte' }]
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -105,7 +101,7 @@ export function Navigation() {
           <div className="container mx-auto px-2 md:px-4">
             <div className="flex items-center justify-between">
               {/* Desktop Navigation */}
-              <div className="hidden lg:flex items-center space-x-8">
+              <div className="hidden lg:flex items-center space-x-8 ">
                 <Link
                   href={'/institucional'}
                   className={`text-xs font-medium transition-colors border-b-2 ${
@@ -126,53 +122,40 @@ export function Navigation() {
                 >
                   INVESTE EM ANGOLA
                 </Link>
-              </div>
-
-              {/* Logo - Always visible */}
+              </div>{' '}
+            
               <Link href="/" className="flex flex-col text-center">
                 <Image
-                  src="/angola-logo.svg"
+                  src="/angola-vertical-logo.svg"
                   alt="Logo"
                   width={200}
                   height={200}
                   className="h-13 w-18 object-cover"
                 />
               </Link>
-
               {/* Desktop Navigation Right */}
               <div className="hidden lg:flex items-center space-x-8">
                 <Link
-                  href={'/'}
+                  href={'/informações'}
                   className={`text-xs font-medium transition-colors border-b-2 ${
-                    pathname === '/'
+                    pathname === '/informações'
                       ? 'text-brand-orange border-brand-orange'
                       : 'text-gray-800 hover:text-brand-orange border-transparent hover:border-brand-orange'
                   }`}
                 >
-                  EXPLORE ANGOLA
+                  informações
                 </Link>
                 <Link
-                  href={'/facilidades'}
+                  href={'/contacto'}
                   className={`text-xs font-medium transition-colors border-b-2 ${
-                    pathname === '/facilidades'
+                    pathname === '/contacto'
                       ? 'text-brand-orange border-brand-orange'
                       : 'text-gray-800 hover:text-brand-orange border-transparent hover:border-brand-orange'
                   }`}
                 >
-                  FACILIDADES
-                </Link>
-                <Link
-                  href={'/recursos'}
-                  className={`text-xs font-medium transition-colors border-b-2 ${
-                    pathname === '/recursos'
-                      ? 'text-brand-orange border-brand-orange'
-                      : 'text-gray-800 hover:text-brand-orange border-transparent hover:border-brand-orange'
-                  }`}
-                >
-                  RECURSOS
+                  FALE CONNOSCO
                 </Link>
               </div>
-
               {/* Mobile Menu using shadcn Sheet */}
               <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
                 <SheetTrigger asChild>
@@ -188,7 +171,7 @@ export function Navigation() {
                   <SheetHeader className="p-6 pb-4 bg-gradient-to-r from-white via-orange-50/30 to-white border-b">
                     <SheetTitle className="flex items-center space-x-3">
                       <Image
-                        src="/angola-logo.svg"
+                        src="/angola-vertical-logo.svg"
                         alt="Visit Angola Logo"
                         width={148}
                         height={148}
@@ -213,7 +196,7 @@ export function Navigation() {
                           return (
                             <NavLink
                               key={item.name}
-                              href={item.link}
+                              href={item.link!}
                               isActive={isActive}
                               className="text-base"
                             >

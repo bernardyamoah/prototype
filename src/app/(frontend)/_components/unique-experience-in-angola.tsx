@@ -45,19 +45,8 @@ const UniqueExperiencesInAngolaCarousel = ({ events }: { events: Event[] }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Melhores Passeios
+          Experiências únicas em Angola
         </motion.h2>
-
-        <motion.p
-          className="text-xl  max-w-3xl mx-auto leading-relaxed text-primary"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          Desde safaris selvagens até praias paradisíacas, cachoeiras majestosas e patrimônio
-          histórico fascinante. Explore a diversidade única de Angola com tours autênticos e guias
-          locais especializados.
-        </motion.p>
       </motion.div>
 
       {/* Carousel Container */}

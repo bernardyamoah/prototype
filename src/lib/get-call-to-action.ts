@@ -6,7 +6,7 @@ import { getPayload } from 'payload'
 
 interface GetCallToActionParams {
   locale?: 'pt' | 'en'
-  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'recursos'
+  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'informações'
 }
 
 /**
