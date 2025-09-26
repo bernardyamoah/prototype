@@ -1,8 +1,11 @@
 import { HeroSection } from '@/components/hero-section'
 import { getHeroSection } from '@/lib/get-header-section'
 import { getPageSections } from '@/lib/get-section'
-import { getEvents } from '@/lib/payload-utils'
+
+import { getEvents } from '@/lib/get-events'
+import { getWhatToDoInLuanda } from '@/lib/get-what-to-do-in-luanda'
 import { Event, PageSection } from '@/payload-types'
+import ActivitiesCarousel from './_components/activities-carousel'
 import SectionStructureCarousel from './_components/section-carousel'
 import ExploreCarousel from './explore/_component/explore-tours'
 
@@ -13,12 +16,12 @@ export default async function HomePage(props: { params: Params; searchParams: Se
   const searchParams = await props.searchParams
   const locale = (await searchParams).locale || 'pt'
   const heroSection = await getHeroSection({ locale, page: 'explore' })
-  const events: Event[] = await getEvents()
+  const featuredEvents: Event[] = await getEvents({ isFeatured: true })
   const sections: PageSection[] = await getPageSections({
     locale,
     page: 'explore',
   })
-  console.log({ sections })
+  const featuredActivities = await getWhatToDoInLuanda({ isFeatured: true })
   return (
     <div className="">
       <HeroSection
@@ -31,15 +34,19 @@ export default async function HomePage(props: { params: Params; searchParams: Se
       />
 
       {/* Featured Tours Section */}
-      <div className="px-4 pb-20">
-        <ExploreCarousel events={events} />
-      </div>
+      {featuredEvents.length > 0 && (
+        <div className="px-4 pb-20">
+          <ExploreCarousel events={featuredEvents} />
+        </div>
+      )}
 
       {sections.map((section) => (
         <div key={section.title} className="bg-[#fefefe] pb-20 px-4">
           <SectionStructureCarousel section={section} />
         </div>
       ))}
+
+      <ActivitiesCarousel activities={featuredActivities} />
     </div>
   )
 }

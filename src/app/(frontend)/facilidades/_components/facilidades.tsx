@@ -123,47 +123,7 @@ export default function Facilidades({ featuredEvents }: { featuredEvents: Event[
           </div>
         </section>
       )}
-      <section className="pb-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <AnimatedDividerBar color="bg-blue-600" className="mb-8" />
-
-            <motion.h2
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              O que fazer em Luanda
-            </motion.h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {activities.map((activity, index) => (
-              <motion.div
-                key={activity.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <ActivityCard item={activity} isActive={true} />
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Dots Navigation */}
-          <div className="flex justify-center mt-12 gap-2">
-            {[0, 1, 2].map((index) => (
-              <div
-                key={index}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === 0 ? 'w-8 bg-gray-800' : 'w-2 bg-gray-400'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+    
     </>
   )
 }

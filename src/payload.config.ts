@@ -15,6 +15,7 @@ import PageSections from './collections/PageSections'
 
 import { Users } from './collections/Users'
 import Vision from './collections/Vision'
+import WhatToDoInLuanda from './collections/WhatToDoInLuanda'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,7 +33,7 @@ export default buildConfig({
     Events,
     PageHeaders,
     PageSections,
-
+    WhatToDoInLuanda,
     Vision,
     CallToActions,
   ],

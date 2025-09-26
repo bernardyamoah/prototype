@@ -72,6 +72,7 @@ export interface Config {
     events: Event;
     'page-headers': PageHeader;
     'page-sections': PageSection;
+    'what-to-do-in-luanda': WhatToDoInLuanda;
     vision: Vision;
     'call-to-actions': CallToAction;
     'payload-locked-documents': PayloadLockedDocument;
@@ -85,6 +86,7 @@ export interface Config {
     events: EventsSelect<false> | EventsSelect<true>;
     'page-headers': PageHeadersSelect<false> | PageHeadersSelect<true>;
     'page-sections': PageSectionsSelect<false> | PageSectionsSelect<true>;
+    'what-to-do-in-luanda': WhatToDoInLuandaSelect<false> | WhatToDoInLuandaSelect<true>;
     vision: VisionSelect<false> | VisionSelect<true>;
     'call-to-actions': CallToActionsSelect<false> | CallToActionsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -370,6 +372,23 @@ export interface PageSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "what-to-do-in-luanda".
+ */
+export interface WhatToDoInLuanda {
+  id: string;
+  title: string;
+  description: string;
+  image: string | Media;
+  status: 'draft' | 'published';
+  /**
+   * Check to highlight this activity as a featured item.
+   */
+  isFeatured?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "vision".
  */
 export interface Vision {
@@ -435,6 +454,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'page-sections';
         value: string | PageSection;
+      } | null)
+    | ({
+        relationTo: 'what-to-do-in-luanda';
+        value: string | WhatToDoInLuanda;
       } | null)
     | ({
         relationTo: 'vision';
@@ -671,6 +694,19 @@ export interface PageSectionsSelect<T extends boolean = true> {
         maxEvents?: T;
       };
   isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "what-to-do-in-luanda_select".
+ */
+export interface WhatToDoInLuandaSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  image?: T;
+  status?: T;
+  isFeatured?: T;
   updatedAt?: T;
   createdAt?: T;
 }
