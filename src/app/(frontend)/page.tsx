@@ -7,6 +7,7 @@ import { getWhatToDoInLuanda } from '@/lib/get-what-to-do-in-luanda'
 import { Event, PageSection } from '@/payload-types'
 import ActivitiesCarousel from './_components/activities-carousel'
 import SectionStructureCarousel from './_components/section-carousel'
+import UniqueExperiencesInAngolaCarousel from './_components/unique-experience-in-angola'
 import ExploreCarousel from './explore/_component/explore-tours'
 
 type Params = Promise<{ slug: string }>
@@ -17,6 +18,7 @@ export default async function HomePage(props: { params: Params; searchParams: Se
   const locale = (await searchParams).locale || 'pt'
   const heroSection = await getHeroSection({ locale, page: 'explore' })
   const featuredEvents: Event[] = await getEvents({ isFeatured: true })
+  const events: Event[] = await getEvents()
   const sections: PageSection[] = await getPageSections({
     locale,
     page: 'explore',
@@ -47,6 +49,7 @@ export default async function HomePage(props: { params: Params; searchParams: Se
       ))}
 
       <ActivitiesCarousel activities={featuredActivities} />
+      {events && events.length > 0 && <UniqueExperiencesInAngolaCarousel events={events} />}
     </div>
   )
 }
