@@ -99,6 +99,7 @@ export const iconOptions = [
   // Communication & Technology
   { label: 'Phone', value: 'lucide:phone' },
   { label: 'Mail', value: 'lucide:mail' },
+  { label: 'Message', value: 'lucide:message-square' }, // Added message icon
   { label: 'Laptop', value: 'mdi:laptop' },
   { label: 'Wifi', value: 'lucide:wifi' },
   { label: 'Database', value: 'fa:database' },

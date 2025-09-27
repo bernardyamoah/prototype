@@ -31,7 +31,7 @@ export const PageSections: CollectionConfig = {
         { label: 'Statistics Carousel', value: 'stats' },
         { label: 'Testimonials', value: 'testimonials' },
         { label: 'FAQ', value: 'faq' },
-        { label: 'Information Carousel', value: 'government-cards' },
+        { label: 'Information Carousel', value: 'information-cards' },
         { label: 'Investment Carousel', value: 'investment-cards' },
         { label: 'Events Carousel', value: 'events-carousel' },
         { label: 'Image Carousel', value: 'image-carousel' },
@@ -50,6 +50,7 @@ export const PageSections: CollectionConfig = {
         { label: 'Institucional', value: 'institucional' },
         { label: 'Investe', value: 'investe' },
         { label: 'Informações', value: 'information' },
+        { label: 'Contacto', value: 'contact' },
       ],
     },
     {
@@ -129,7 +130,7 @@ export const PageSections: CollectionConfig = {
           required: true,
           options: iconOptions,
           admin: {
-            description: 'Select a Lucide icon for the government card.',
+            description: 'Select a Lucide icon for the information card.',
           },
         },
         {
@@ -164,7 +165,7 @@ export const PageSections: CollectionConfig = {
           required: true,
           options: iconOptions,
           admin: {
-            description: 'Select a Lucide icon for the government card.',
+            description: 'Select a Lucide icon for the information card.',
           },
         },
       ],
@@ -222,10 +223,10 @@ export const PageSections: CollectionConfig = {
       ],
     },
     {
-      name: 'governmentCards',
+      name: 'information_cards',
       type: 'array',
       admin: {
-        condition: (data, siblingData) => siblingData?.type === 'government-cards',
+        condition: (data, siblingData) => siblingData?.type === 'information-cards',
       },
       fields: [
         {
@@ -246,7 +247,7 @@ export const PageSections: CollectionConfig = {
           required: true,
           options: iconOptions,
           admin: {
-            description: 'Select a Lucide icon for the government card.',
+            description: 'Select a Lucide icon for the information card.',
           },
         },
         {
@@ -282,7 +283,7 @@ export const PageSections: CollectionConfig = {
           required: true,
           options: iconOptions,
           admin: {
-            description: 'Select a Lucide icon for the government card.',
+            description: 'Select a Lucide icon for the investment card.',
           },
         },
       ],
@@ -346,7 +347,7 @@ export const PageSections: CollectionConfig = {
           type: 'select',
           options: iconOptions,
           admin: {
-            description: 'Select a Lucide icon for the government card.',
+            description: 'Select a Lucide icon for the highlight card.',
           },
         },
         {

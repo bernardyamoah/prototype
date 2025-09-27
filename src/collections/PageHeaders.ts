@@ -1,5 +1,8 @@
 import type { CollectionConfig } from 'payload';
 
+
+
+
 export const PageHeaders: CollectionConfig = {
   slug: 'page-headers',
   admin: {
@@ -31,6 +34,7 @@ export const PageHeaders: CollectionConfig = {
         { label: 'Institucional', value: 'institucional' },
         { label: 'Investe', value: 'investe' },
         { label: 'Informações', value: 'information' },
+        { label: 'Contacto', value: 'contact' },
         { label: 'Custom', value: 'custom' },
       ],
     },

@@ -2,14 +2,14 @@
 import { Icon } from '@iconify/react'
 import { motion } from 'motion/react'
 import Image from 'next/image'
-interface GovernmentStructureItem {
+interface InformationStructureItem {
   title: string
   description: string
   icon: string
   image: string
 }
 
-const GovernmentCard = ({ item, index }: { item: GovernmentStructureItem; index: number }) => {
+const InformationCard = ({ item, index }: { item: InformationStructureItem; index: number }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -41,4 +41,4 @@ const GovernmentCard = ({ item, index }: { item: GovernmentStructureItem; index:
   )
 }
 
-export default GovernmentCard
+export default InformationCard

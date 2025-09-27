@@ -3,7 +3,7 @@ import config from '@payload-config'
 import { getPayload } from 'payload'
 
 // Define valid page options based on the PageHeaders collection
-type PageOption = 'explore' | 'facilidades' | 'institucional' | 'investe' | 'information' | 'custom'
+type PageOption = 'explore' | 'facilidades' | 'institucional' | 'investe' | 'information' | 'custom'|'contact'
 
 interface GetHeroSectionParams {
   locale?: 'pt' | 'en'
@@ -36,6 +36,7 @@ export async function getHeroSection({
       'investe',
       'information',
       'custom',
+      'contact',
     ]
     if (!validPages.includes(page)) {
       throw new Error(`Invalid page: ${page}. Must be one of ${validPages.join(', ')}.`)

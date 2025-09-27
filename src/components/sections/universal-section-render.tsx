@@ -1,19 +1,10 @@
 'use client'
+import FaqSection from '@/components/sections/faq-section'
 import ImageCarouselSection from '@/components/sections/image-carousel-section'
+import InformationCarouselSection from '@/components/sections/information-carousel-section'
 import InvestmentCarouselSection from '@/components/sections/investment-carousel-section'
 import StatsCarouselSection from '@/components/sections/stats-carousel-section'
 import { PageSection } from '@/payload-types'
-import InformationCarouselSection from './information-carousel-section'
-// import SectionStructureCarousel from './section-structure-carousel'
-// import TextSection from './sections/text-section'
-// import ImageGallerySection from './sections/image-gallery-section'
-// import FeaturesSection from './sections/features-section'
-// import StatsCarouselSection from './sections/stats-carousel-section'
-// import TestimonialsSection from './sections/testimonials-section'
-// import FaqSection from './sections/faq-section'
-// import InvestmentCarouselSection from './sections/investment-carousel-section'
-// import EventsCarouselSection from './sections/events-carousel-section'
-// import CustomSection from './sections/custom-section'
 
 interface SectionRendererProps {
   section: PageSection
@@ -41,10 +32,10 @@ const SectionRenderer = ({ section }: SectionRendererProps) => {
     // case 'testimonials':
     //   return <TestimonialsSection section={section} />
 
-    // case 'faq':
-    //   return <FaqSection section={section} />
+    case 'faq':
+      return <FaqSection section={section} />
 
-    case 'government-cards':
+    case 'information-cards':
       return <InformationCarouselSection section={section} />
 
     case 'investment-cards':

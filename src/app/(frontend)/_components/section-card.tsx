@@ -68,8 +68,7 @@ const SectionCardsList = ({ items }: SectionCardsListProps) => {
           No Section Structures Available
         </h3>
         <p className="text-gray-600 max-w-md">
-          There are currently no government structures or departments listed. Check back soon for
-          updates or contact support for more information.
+          There are currently no  data here
         </p>
       </motion.div>
     )

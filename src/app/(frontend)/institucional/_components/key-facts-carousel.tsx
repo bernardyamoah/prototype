@@ -69,7 +69,7 @@ const KeyFactsCarousel = ({ keyFacts }: { keyFacts: PageSection['stats'] }) => {
   }
 
   return (
-    <div className="mb-16 max-w-(--breakpoint-xl) mx-auto">
+    <div className="mb-16  mx-auto">
       <div className="w-full flex flex-col">
         <Carousel
           setApi={setApi}
@@ -89,7 +89,7 @@ const KeyFactsCarousel = ({ keyFacts }: { keyFacts: PageSection['stats'] }) => {
         >
           <CarouselContent className="-ml-6 h-full w-full p-3">
             {keyFacts?.map((fact, index) => (
-              <CarouselItem key={fact.label} className="pl-6 sm:basis-1/3 md:basis-1/4 ">
+              <CarouselItem key={fact.label} className="pl-6 sm:basis-1/3 md:basis-1/3 ">
                 <KeyFactCard item={fact} index={index} />
               </CarouselItem>
             ))}

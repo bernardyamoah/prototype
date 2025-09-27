@@ -14,33 +14,7 @@ import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import SectionCard from '../../app/(frontend)/_components/section-card'
 
-// const governmentStructure = [
-//   {
-//     title: 'Presidente da República',
-//     description: 'Chefe de Estado e do Executivo, eleito por sufrágio universal direto.',
-//     icon: Building2,
-//     image:
-//       'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=face',
-//   },
-//   {
-//     title: 'Assembleia Nacional',
-//     description: 'Órgão legislativo unicameral com 220 deputados eleitos por 5 anos.',
-//     icon: Users,
-//     image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop',
-//   },
-//   {
-//     title: 'Tribunal Supremo',
-//     description: 'Órgão superior da hierarquia dos tribunais judiciais.',
-//     icon: Award,
-//     image: 'https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=400&h=300&fit=crop',
-//   },
-//   {
-//     title: 'Províncias',
-//     description: '18 províncias com governadores nomeados pelo Presidente.',
-//     icon: MapPin,
-//     image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop',
-//   },
-// ]
+
 
 const InformationCarouselSection = ({ section }: { section: PageSection }) => {
   const [api, setApi] = useState<CarouselApi>()
@@ -79,7 +53,7 @@ const InformationCarouselSection = ({ section }: { section: PageSection }) => {
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">{section.subheading}</p>
         </motion.div>
 
-        {section.governmentCards && (
+        {section.information_cards && (
           <div className="w-full flex flex-col">
             <Carousel
               setApi={setApi}
@@ -98,7 +72,7 @@ const InformationCarouselSection = ({ section }: { section: PageSection }) => {
               }}
             >
               <CarouselContent className="-ml-6 h-full p-3">
-                {section.governmentCards.map((item, index) => (
+                {section.information_cards.map((item, index) => (
                   <CarouselItem key={item.title} className="pl-6 sm:basis-1/2 md:basis-1/3 ">
                     <SectionCard item={item} index={index} />
                   </CarouselItem>
@@ -114,9 +88,9 @@ const InformationCarouselSection = ({ section }: { section: PageSection }) => {
         )}
 
         {/* Dots Navigation */}
-        {section.governmentCards && (
+        {section.information_cards && (
           <div className="flex justify-center mt-8 gap-2">
-            {section.governmentCards.map((_, index) => (
+            {section.information_cards.map((_, index) => (
               <motion.button
                 key={index}
                 onClick={() => goToSlide(index)}

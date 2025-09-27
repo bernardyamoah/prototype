@@ -1,4 +1,5 @@
-import { CollectionConfig } from 'payload'
+import { pageTypeOptions } from '@/constant/page-options';
+import { CollectionConfig } from 'payload';
 
 export const CallToActions: CollectionConfig = {
   slug: 'call-to-actions',
@@ -9,8 +10,9 @@ export const CallToActions: CollectionConfig = {
     {
       name: 'page',
       type: 'select',
-      options: ['explore', 'facilidades', 'institucional', 'investe', 'information'],
+      options: pageTypeOptions,
       required: true,
+    
     },
     { name: 'heading', type: 'text', localized: true },
     { name: 'subheading', type: 'text', localized: true },

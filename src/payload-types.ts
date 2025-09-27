@@ -226,7 +226,7 @@ export interface PageHeader {
   id: string;
   title: string;
   subtitle?: string | null;
-  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'information' | 'custom';
+  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'information' | 'contact' | 'custom';
   backgroundImage: string | Media;
   textColor?: ('text-white' | 'text-black' | 'text-primary' | 'custom') | null;
   /**
@@ -257,13 +257,13 @@ export interface PageSection {
     | 'stats'
     | 'testimonials'
     | 'faq'
-    | 'government-cards'
+    | 'information-cards'
     | 'investment-cards'
     | 'events-carousel'
     | 'image-carousel'
     | 'highlight-carousel'
     | 'custom';
-  page: 'home' | 'explore' | 'facilidades' | 'institucional' | 'investe' | 'information';
+  page: 'home' | 'explore' | 'facilidades' | 'institucional' | 'investe' | 'information' | 'contact';
   /**
    * Order of the section (higher numbers appear later)
    */
@@ -298,7 +298,7 @@ export interface PageSection {
         title: string;
         description?: string | null;
         /**
-         * Select a Lucide icon for the government card.
+         * Select a Lucide icon for the information card.
          */
         icon:
           | 'lucide:building'
@@ -379,6 +379,7 @@ export interface PageSection {
           | 'lucide:hammer'
           | 'lucide:phone'
           | 'lucide:mail'
+          | 'lucide:message-square'
           | 'mdi:laptop'
           | 'lucide:wifi'
           | 'fa:database';
@@ -391,7 +392,7 @@ export interface PageSection {
         label: string;
         value: string;
         /**
-         * Select a Lucide icon for the government card.
+         * Select a Lucide icon for the information card.
          */
         icon:
           | 'lucide:building'
@@ -472,6 +473,7 @@ export interface PageSection {
           | 'lucide:hammer'
           | 'lucide:phone'
           | 'lucide:mail'
+          | 'lucide:message-square'
           | 'mdi:laptop'
           | 'lucide:wifi'
           | 'fa:database';
@@ -494,12 +496,12 @@ export interface PageSection {
         id?: string | null;
       }[]
     | null;
-  governmentCards?:
+  information_cards?:
     | {
         title: string;
         description: string;
         /**
-         * Select a Lucide icon for the government card.
+         * Select a Lucide icon for the information card.
          */
         icon:
           | 'lucide:building'
@@ -580,6 +582,7 @@ export interface PageSection {
           | 'lucide:hammer'
           | 'lucide:phone'
           | 'lucide:mail'
+          | 'lucide:message-square'
           | 'mdi:laptop'
           | 'lucide:wifi'
           | 'fa:database';
@@ -592,7 +595,7 @@ export interface PageSection {
         name: string;
         description: string;
         /**
-         * Select a Lucide icon for the government card.
+         * Select a Lucide icon for the investment card.
          */
         icon:
           | 'lucide:building'
@@ -673,6 +676,7 @@ export interface PageSection {
           | 'lucide:hammer'
           | 'lucide:phone'
           | 'lucide:mail'
+          | 'lucide:message-square'
           | 'mdi:laptop'
           | 'lucide:wifi'
           | 'fa:database';
@@ -694,7 +698,7 @@ export interface PageSection {
         description: string;
         link?: string | null;
         /**
-         * Select a Lucide icon for the government card.
+         * Select a Lucide icon for the highlight card.
          */
         icon?:
           | (
@@ -776,6 +780,7 @@ export interface PageSection {
               | 'lucide:hammer'
               | 'lucide:phone'
               | 'lucide:mail'
+              | 'lucide:message-square'
               | 'mdi:laptop'
               | 'lucide:wifi'
               | 'fa:database'
@@ -837,7 +842,7 @@ export interface Vision {
 export interface CallToAction {
   id: string;
   title: string;
-  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'information';
+  page: 'explore' | 'facilidades' | 'institucional' | 'investe' | 'information' | 'contact';
   heading?: string | null;
   subheading?: string | null;
   buttons?:
@@ -1097,7 +1102,7 @@ export interface PageSectionsSelect<T extends boolean = true> {
         answer?: T;
         id?: T;
       };
-  governmentCards?:
+  information_cards?:
     | T
     | {
         title?: T;
